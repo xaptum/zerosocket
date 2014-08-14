@@ -28,8 +28,8 @@ class Config {
 private:
 	char * _config[SIZEOFARRAY(ZSElementName)];
 protected: // Derived class, you have your rights here.
-	virtual size_t read  (char * args) = 0;
-	virtual size_t write (char * args) = 0;
+	virtual size_t read  (void * args) = 0;
+	virtual size_t write (void * args) = 0;
 public:
 	Config();
 	virtual ~Config();

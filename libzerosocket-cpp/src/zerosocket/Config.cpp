@@ -4,21 +4,23 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  * 
  * Created on:Aug 13, 2014
- *     Author: pradeepbarthur Inc.
+ *     Author: pradeep barthur
  ********************************************************************************/
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "version.h"
 #include "Config.h"
+#include "zerosocket.h"
 
 namespace zerosocket {
 
 Config::Config()
 {
-	for (int idx = 0 ; idx < SIZEOFARRAY(ZSElementName) ; idx ++)
+	for (size_t idx = 0 ; idx < SIZEOFARRAY(ZSElementName) ; idx ++)
 	{
 		_config[idx] = NULL;
 	}
-	_config[ZSElement::ZVER] = _version;
+	_config[ZVER] = const_cast<char *>(_version);
 }
 
 /**
@@ -29,9 +31,9 @@ Config::~Config() {
 #ifdef NO_MANAGE_MEMORY
 	// nothing to delete. application manages memory
 #else
-	for (int idx = 0 ; idx < SIZEOFARRAY(ZSElementName) ; idx ++)
+	for (size_t idx = 0 ; idx < SIZEOFARRAY(ZSElementName) ; idx ++)
 	{
-		if ( ZSElement::ZVER == idx) continue; // skip version as it is a static string
+		if ( ZVER == idx) continue; // skip version as it is a static string
 		if ( NULL != _config[idx])
 		{
 			delete _config[idx];
@@ -60,7 +62,7 @@ const char* Config::get(ZSElement key) const {
 int Config::set(ZSElement key, const char* val) {
 	if (key >= SIZEOFARRAY(ZSElementName) || key <= 0) return -1;
 	if (NULL == val) return -2;
-	_config[key] = val;
+	_config[key] = const_cast<char *>(val);
 	return 0;
 }
 

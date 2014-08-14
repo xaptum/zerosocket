@@ -14,13 +14,33 @@
 
 namespace zerosocket {
 
+#ifndef MAX_FILEPATH_SIZE
+# define MAX_FILEPATH_SIZE 1024
+#endif
 /*
  *
  */
 class FileConfig: public Config {
+private:
+	// members
+	char _filename[MAX_FILEPATH_SIZE];
+	// methods
+	size_t _read ();
+	size_t _parser(char * filecontent,size_t size);
+	size_t _write ();
+	size_t _composer(char ** filecontent,size_t * size);
 public:
-	FileConfig();
+	FileConfig(const char * filename);
+	FileConfig(FileConfig & config);
 	virtual ~FileConfig();
+	void setFilename(const char * filename);
+	const char* getFilename() const;
+	static char * newStrBuf(const char * old);
+
+protected:
+	FileConfig();
+	virtual size_t read  (void * args);
+	virtual size_t write (void * args);
 };
 
 } /* namespace zerosocket */

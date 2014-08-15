@@ -176,10 +176,10 @@ size_t FileConfig::_parser(char* filecontent,size_t size) {
 	return retval;
 }
 
-#define PUSH_BACK(CMP,KEY,VAL) do{ \
+#define PUSH_BACK(CMP,KEY,VAL) if(NULL != VAL){ \
 			jsmnval_t KEY_; KEY_.str = VAL; \
 			jsmn_compose(&CMP,#KEY, KEY_, JSMN_STRING); \
-	}while(0)
+	}
 size_t FileConfig::_composer(char** filecontent,size_t * size) {
 	jsmn_composer composer;
 	jsmn_initc(&composer);

@@ -22,15 +22,15 @@ public:
 	UDPConnection();
 	virtual ~UDPConnection();
 
-	virtual int connect(struct sockaddr *serv_addr, int addrlen);
-	virtual int bind(struct sockaddr *my_addr, int addrlen);
+	virtual int connect(struct sockaddr *serv_addr, socklen_t addrlen);
+	virtual int bind(struct sockaddr *my_addr, socklen_t addrlen);
 	virtual int listen(int backlog);
 	virtual int accept(struct sockaddr *cliaddr, socklen_t *addrlen);
-	virtual int send(const void *msg, size_t len, int flags);
-	virtual int recv(void *buf, size_t len, unsigned int flags);
-	virtual int sendto(const void *msg, size_t len, unsigned int flags,
+	virtual int send(const void *msg, size_t len, flag_t flags);
+	virtual int recv(void *buf, size_t len, flag_t flags);
+	virtual int sendto(const void *msg, size_t len, flag_t flags,
 			const struct sockaddr *to, socklen_t tolen);
-	virtual int recvfrom(void *buf, size_t len, unsigned int flags,
+	virtual int recvfrom(void *buf, size_t len, flag_t flags,
 			struct sockaddr *from, socklen_t *fromlen);
 	virtual int close();
 };

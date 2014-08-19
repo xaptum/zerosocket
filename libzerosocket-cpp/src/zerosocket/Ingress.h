@@ -7,6 +7,8 @@
  *     Author: pradeepbarthur Inc.
  ********************************************************************************/
 
+#include "Config.h"
+
 #ifndef INGRESS_H_
 #define INGRESS_H_
 
@@ -16,8 +18,9 @@ namespace zerosocket {
  *
  */
 class Ingress {
+	Config * _config;
 public:
-	Ingress();
+	Ingress(Config * config);
 	virtual ~Ingress();
 };
 

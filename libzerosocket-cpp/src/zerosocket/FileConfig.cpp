@@ -4,7 +4,7 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  * 
  * Created on:Aug 13, 2014
- *     Author: pradeepbarthur Inc.
+ *     Author: Pradeep Barthur
  ********************************************************************************/
 
 #include "jsmn.h"
@@ -137,8 +137,8 @@ size_t FileConfig::_parser(char* filecontent,size_t size) {
 	jsmn_init(&p);
 	bzero(tokens,sizeof(tokens));
 
-	retval = jsmn_parse(&p, filecontent, size, tokens, 128);
-	if (retval < 0)
+	int ret = jsmn_parse(&p, filecontent, size, tokens, 128);
+	if (ret < 0)
 		return -1;
 
 	for (int idx = 1; tokens[idx].end < tokens[0].end; idx += 2) {

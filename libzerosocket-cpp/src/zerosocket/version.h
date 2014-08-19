@@ -11,7 +11,7 @@
 #define VERSION_H_
 
 namespace zerosocket {
-	const char * _version = "1.0";
+	extern const char * _version;
 
 } /* namespace zerosocket */
 

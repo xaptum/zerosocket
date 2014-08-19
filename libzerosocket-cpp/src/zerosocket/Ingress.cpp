@@ -11,13 +11,12 @@
 
 namespace zerosocket {
 
-Ingress::Ingress() {
-	// TODO Auto-generated constructor stub
-
+Ingress::Ingress(Config * config)
+	:_config(config)
+{
 }
 
 Ingress::~Ingress() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace zerosocket */

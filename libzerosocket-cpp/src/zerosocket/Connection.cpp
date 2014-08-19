@@ -4,24 +4,30 @@
  * License: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
  *
  * Created on:Aug 13, 2014
- *     Author: pradeepbarthur Inc.
+ *     Author: Pradeep Barthur
  ********************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
+#include "Config.h"
 #include "Connection.h"
+#include "TCPConnection.h"
+#include "UDPConnection.h"
 
 namespace zerosocket {
 
-Connection::Connection()
-	:fd(0)
-{
-	// TODO Auto-generated constructor stub
 
+Connection::Connection()
+	:fd(-1),egress(Connection::getConfig()), ingress(Connection::getConfig())
+{
 }
 
+/**
+ * Translate the sockfd to connection ID
+ */
 Connection* Connection::getConnection(int sockfd) {
-	//if (Connection::hashmap)
+	return dynamic_cast<Connection*>(Connection::store.get(sockfd));
 }
 
 int Connection::newConnection(int family, int type, int protocol) {
@@ -50,13 +56,11 @@ int Connection::newIPv4Connection(int type, int protocol) {
 	switch (type)
 	{
 	case SOCK_STREAM: //Stream socket , TCP
-	{
-		//conn = new TCPConnection();
-	}break;
+		conn = dynamic_cast<Connection *>(new zerosocket::TCPConnection());
+		break;
 	case SOCK_DGRAM: //Datagram socket
-	{
-		//conn = new UDPConnection();
-	}break;
+		conn = dynamic_cast<Connection *>(new zerosocket::UDPConnection());
+		break;
 	case SOCK_SEQPACKET: //Sequenced packet socket
 	case SOCK_RAW: //
 	default:
@@ -65,7 +69,7 @@ int Connection::newIPv4Connection(int type, int protocol) {
 	}
 	// add to map
 	if (conn && conn > 0){
-		hashmap[conn->getFd()] = conn;
+		store.set(conn->getFd(),conn);
 		return conn->getFd();
 	}else return -1;
 }
@@ -75,13 +79,11 @@ int Connection::newIPv6Connection(int type, int protocol) {
 	switch (type)
 	{
 	case SOCK_STREAM: //Stream socket , TCP
-	{
-		//conn = new TCPConnection();
-	}break;
+		conn = dynamic_cast<Connection *>(new TCPConnection());
+		break;
 	case SOCK_DGRAM: //Datagram socket
-	{
-		//conn = new UDPConnection();
-	}break;
+		conn = dynamic_cast<Connection *>(new UDPConnection());
+		break;
 	case SOCK_SEQPACKET: //Sequenced packet socket
 	case SOCK_RAW: //
 	default:
@@ -90,7 +92,7 @@ int Connection::newIPv6Connection(int type, int protocol) {
 	}
 	// add to map
 	if (conn && conn > 0){
-		hashmap[conn->getFd()] = conn;
+		store.set(conn->getFd(),conn);
 		return conn->getFd();
 	}else return -1;
 }
@@ -99,7 +101,15 @@ void Connection::print() const {
 }
 
 Connection::~Connection() {
-	// TODO Auto-generated destructor stub
+}
+
+const Egress& Connection::getEgress() const {
+	return egress;
+}
+
+const Ingress& Connection::getIngress() const {
+	return ingress;
 }
 
 } /* namespace zerosocket */
+

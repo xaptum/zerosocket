@@ -26,11 +26,11 @@ TCPConnection::~TCPConnection() {
 }
 
 int TCPConnection::connect(struct sockaddr* serv_addr,
-		int addrlen) {
+		socklen_t addrlen) {
 	return ::connect(this->getFd(),serv_addr,addrlen);
 }
 
-int TCPConnection::bind(struct sockaddr* my_addr, int addrlen) {
+int TCPConnection::bind(struct sockaddr* my_addr, socklen_t addrlen) {
 	return ::bind(this->getFd(),my_addr,addrlen);
 }
 
@@ -43,11 +43,11 @@ int TCPConnection::accept(struct sockaddr* cliaddr,
 	return ::accept(this->getFd(),cliaddr,addrlen);
 }
 
-int TCPConnection::send(const void* msg, size_t len, int flags) {
+int TCPConnection::send(const void* msg, size_t len, flag_t flags) {
 	return ::send(this->getFd(),msg, len, flags);
 }
 
-int TCPConnection::recv(void* buf, size_t len, unsigned int flags) {
+int TCPConnection::recv(void* buf, size_t len, flag_t flags) {
 	return ::recv(this->getFd(), buf, len, flags);
 }
 
@@ -56,11 +56,11 @@ int TCPConnection::recv(void* buf, size_t len, unsigned int flags) {
  * behaves like a TCP send
  */
 int TCPConnection::sendto(const void* msg, size_t len,
-		unsigned int flags, const struct sockaddr* to, socklen_t tolen) {
+		flag_t flags, const struct sockaddr* to, socklen_t tolen) {
 	return send(msg, len, flags);
 }
 
-int TCPConnection::recvfrom(void* buf, size_t len, unsigned int flags,
+int TCPConnection::recvfrom(void* buf, size_t len, flag_t flags,
 		struct sockaddr* from, socklen_t* fromlen) {
 	return recv(buf,len,flags);
 }

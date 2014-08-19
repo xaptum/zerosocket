@@ -27,11 +27,11 @@ UDPConnection::~UDPConnection() {
  * connect not implemented for UDP
  */
 int UDPConnection::connect(struct sockaddr* serv_addr,
-		int addrlen) {
+		socklen_t addrlen) {
 	return -1;
 }
 
-int UDPConnection::bind(struct sockaddr* my_addr, int addrlen) {
+int UDPConnection::bind(struct sockaddr* my_addr, socklen_t addrlen) {
 	return ::bind(this->getFd(),my_addr,addrlen);
 }
 
@@ -53,14 +53,14 @@ int UDPConnection::accept(struct sockaddr* cliaddr,
 /**
  * send not implemented for UDP
  */
-int UDPConnection::send(const void* msg, size_t len, int flags) {
+int UDPConnection::send(const void* msg, size_t len, flag_t flags) {
 	return -1;
 }
 
 /**
  * recv not implemented for UDP
  */
-int UDPConnection::recv(void* buf, size_t len, unsigned int flags) {
+int UDPConnection::recv(void* buf, size_t len, flag_t flags) {
 	return -1;
 }
 
@@ -68,11 +68,11 @@ int UDPConnection::recv(void* buf, size_t len, unsigned int flags) {
  * true UDP send
  */
 int UDPConnection::sendto(const void* msg, size_t len,
-		unsigned int flags, const struct sockaddr* to, socklen_t tolen) {
+		flag_t flags, const struct sockaddr* to, socklen_t tolen) {
 	return ::sendto(this->getFd(), msg, len, flags, to, tolen);
 }
 
-int UDPConnection::recvfrom(void* buf, size_t len, unsigned int flags,
+int UDPConnection::recvfrom(void* buf, size_t len, flag_t flags,
 		struct sockaddr* from, socklen_t * fromlen) {
 
 	return ::recvfrom(this->getFd(), buf, len, flags, from, fromlen);

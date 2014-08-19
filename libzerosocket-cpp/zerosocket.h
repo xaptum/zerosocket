@@ -12,6 +12,11 @@
 #ifndef ZEROSOCKET_H_
 #define ZEROSOCKET_H_
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 enum ZSElement {
 	ZUNK = 0,
 	ZVER, // 1
@@ -46,9 +51,9 @@ const char * const ZSElementDesc [] = {
 	};
 
 #define SIZEOFARRAY(ARR) sizeof(ARR)/sizeof(*ARR)
-#define MAX_CONNECTIONS 100
+#define ZSMAXNAMESZ 10
 
-ZSElement getZSElementIndex(const char * name) ;
+enum ZSElement getZSElementIndex(const char * name) ;
 
 const char * getZSVersion(void);
 
@@ -62,11 +67,15 @@ int zbind(int sockfd, struct sockaddr *my_addr,int addrlen);
 int zlisten(int sockfd,int backlog);
 int zaccept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 int zsend(int sockfd, const void *msg, int len, int flags);
-int zrecv(int sockfd, void *buf, int len, unsigned int flags);
-int zsendto(int sockfd, const void *msg, int len, unsigned int flags,
-		   const struct sockaddr *to, int tolen);
-int zrecvfrom(int sockfd, void *buf, int len, unsigned int flags,
-		     struct sockaddr *from, int *fromlen);
+int zrecv(int sockfd, void *buf, int len, int flags);
+int zsendto(int sockfd, const void *msg, size_t len, int flags,
+		   const struct sockaddr *to, socklen_t tolen);
+int zrecvfrom(int sockfd, void *buf, size_t len, int flags,
+		     struct sockaddr *from, socklen_t *fromlen);
 int zclose( int sockfd );
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* ZEROSOCKET_H_ */

@@ -6,7 +6,7 @@
  * Created on:Aug 13, 2014
  *     Author: pradeepbarthur Inc.
  ********************************************************************************/
-
+#include "Config.h"
 #ifndef EGRESS_H_
 #define EGRESS_H_
 
@@ -16,9 +16,12 @@ namespace zerosocket {
  *
  */
 class Egress {
+private:
+	Config * _config;
 public:
-	Egress();
+	Egress(Config * config);
 	virtual ~Egress();
+	char * c_str();
 };
 
 } /* namespace zerosocket */

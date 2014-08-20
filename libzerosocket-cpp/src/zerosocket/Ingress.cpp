@@ -6,7 +6,7 @@
  * Created on:Aug 13, 2014
  *     Author: pradeepbarthur Inc.
  ********************************************************************************/
-
+#include <ctype.h>
 #include <string.h>
 #include "jsmn.h"
 #include "Ingress.h"
@@ -38,16 +38,16 @@ Ingress::getPayload(const unsigned char* data, size_t len) {
 	int updated = 0;
 	memset(elemValList,0,sizeof(elemValList));
 	// extract header part
-	if ( ! startsWith((const char *)data,'{',len)) return data;
+	if ( ! startsWith((const char *)data,'{',len)) return const_cast<unsigned char *>(data);
 	unsigned char * endOfHdr = (unsigned char*) strchr(reinterpret_cast<const char*>(data),';');
-	if (NULL == endOfHdr) return data; // no header found
-	if ( ! endsWith((const char *)endOfHdr,'}',endOfHdr-data) ) return data;
+	if (NULL == endOfHdr) return const_cast<unsigned char *>(data); // no header found
+	if ( ! endsWith((const char *)endOfHdr,'}',endOfHdr-data) ) return const_cast<unsigned char *>(data);
 	*endOfHdr = 0;
 	// process JSON
 	if (processJSON(elemValList,reinterpret_cast<const char*>(data)) < 0)
 	{
 		fprintf(stderr,"error processing ");
-		return data;
+		return const_cast<unsigned char *>(data);
 	}
 	updated = json2Config(elemValList);
 	fprintf(stderr,"%d config elements updated\n",updated);
@@ -123,7 +123,7 @@ Ingress::json2Config (ElementValueList elemValList [])
 	for (size_t idx = 0 ; idx < SIZEOFARRAY(ZSElementName) ; idx ++, list++)
 	{
 		if ( list->element > ZUNK){
-			char * val = getConfig()->get(list->element);
+			const char * val = getConfig()->get(list->element);
 			if (NULL != val)
 			{// contains a valid pointer, check if we need to update
 				if (0 == strcmp(val,list->value))

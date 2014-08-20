@@ -16,7 +16,7 @@
 
 namespace zerosocket {
 
-/*! @Config.h
+/*!
  * Base class implementation for persistent Config class, provides interface for setting and getting values
  *
  * @author Pradeep Barthur

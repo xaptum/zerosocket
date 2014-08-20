@@ -35,10 +35,11 @@ char* Egress::c_str() {
 	jsmn_initc(&composer);
 
 	PUSH_BACK(composer,ZUSR,_config->get(ZUSR));
-	if (_config->get(ZTOK))
-		PUSH_BACK(composer,ZTOK,_config->get(ZTOK))
-	else
-		PUSH_BACK(composer,ZPAS,_config->get(ZPAS))
+	if (_config->get(ZTOK)){
+		PUSH_BACK(composer,ZTOK,_config->get(ZTOK));
+	}else{
+		PUSH_BACK(composer,ZPAS,_config->get(ZPAS));
+	}
 	PUSH_BACK(composer,ZDAT,_config->get(ZDAT));
 	PUSH_BACK(composer,ZDID,_config->get(ZDID));
 	PUSH_BACK(composer,ZMET,_config->get(ZPAS));

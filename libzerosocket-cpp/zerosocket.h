@@ -12,6 +12,12 @@
 #ifndef ZEROSOCKET_H_
 #define ZEROSOCKET_H_
 
+
+#define SIZEOFARRAY(ARR) sizeof(ARR)/sizeof(*ARR)
+#define ZSMAXNAMESZ 10
+#define ZSMAXVALUSZ 1536
+// value size can also be set to 2048, set as per memory limits
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -32,6 +38,7 @@ enum ZSElement {
 	ZDST  // 11
 };
 
+
 const char * const ZSElementName [] = { "UNKN", "zver", "zusr", "zpas", "ztok",
 		"zdat", "zdid", "zmet", "zadr", "zprt" , "zorg" , "zdst" };
 
@@ -50,16 +57,9 @@ const char * const ZSElementDesc [] = {
 		"Destination"
 	};
 
-#define SIZEOFARRAY(ARR) sizeof(ARR)/sizeof(*ARR)
-#define ZSMAXNAMESZ 10
-
 enum ZSElement getZSElementIndex(const char * name) ;
 
 const char * getZSVersion(void);
-
-/**
- * patched system calls
- */
 
 int zsocket (int family, int type, int protocol);
 int zconnect(int sockfd, struct sockaddr *serv_addr, int addrlen);
@@ -67,8 +67,8 @@ int zbind(int sockfd, struct sockaddr *my_addr,int addrlen);
 int zlisten(int sockfd,int backlog);
 int zaccept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 int zsend(int sockfd, const void *msg, int len, int flags);
-int zrecv(int sockfd, void *buf, int len, int flags);
-int zsendto(int sockfd, const void *msg, size_t len, int flags,
+int zrecv(int sockfd, void *buf, size_t len, int flags);
+int zsendto(int sockfd, const void *msg, int len, int flags,
 		   const struct sockaddr *to, socklen_t tolen);
 int zrecvfrom(int sockfd, void *buf, size_t len, int flags,
 		     struct sockaddr *from, socklen_t *fromlen);

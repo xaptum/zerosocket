@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Zerosocket by pradeepxaptum</title>
+    <title>Zero Socket by xaptum</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -16,51 +16,96 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Zerosocket</h1>
+        <h1 class="header">Zero Socket</h1>
         <p class="header">Implementation of ZeroSocket, a federated security protocol</p>
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/pradeepxaptum/zerosocket/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/pradeepxaptum/zerosocket/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/pradeepxaptum/zerosocket">View On GitHub</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/xaptum/zerosocket/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/xaptum/zerosocket/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/xaptum/zerosocket">View On GitHub</a></li>
         </ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/pradeepxaptum">pradeepxaptum</a></p>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/xaptum">xaptum</a></p>
 
 
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="zero-socket" class="anchor" href="#zero-socket"><span class="octicon octicon-link"></span></a>Zero Socket</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Zero Socket is a minimalistic socket interceptor.  It can be
+easily integrated into resource-limited or embedded projects.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>You can find more information about Zero Socket format at <a href="http://xaptum.com/zerosocket">xaptum.com</a></p>
+
+<p>Library sources are available at <a href="https://github.com/bladeninja/zerosocket">github.com/bladeninja/zerosocket</a></p>
+
+<h2>
+<a name="philosophy" class="anchor" href="#philosophy"><span class="octicon octicon-link"></span></a>Philosophy</h2>
+
+<p>Most client side libraries are meant to add a protocol layer. However the socket
+and network layer needs to be managed independent of the </p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>compatible with C++99 or later</li>
+<li>standard dependencies (even libc , libc++)</li>
+<li>highly portable (tested on x86/amd64, ARM)</li>
+<li>extremely small code footprint</li>
+<li>compile time control through -D options</li>
+<li>no dynamic memory allocation</li>
+<li>library code is covered with unit-tests</li>
+</ul><h2>
+<a name="design" class="anchor" href="#design"><span class="octicon octicon-link"></span></a>Design</h2>
+
+<h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p>To clone the repository you should have git client installed. Just run:</p>
+
+<pre><code>$ git clone https://github.com/bladeninja/zerosocket.git
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p><a href="Global-variables-&amp;-macros">Global variables &amp; macros</a></p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p><a href="getZSElementIndex()">enum ZSElement getZSElementIndex(const char * name) ;</a></p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p><a href="getZSVersion()">const char * getZSVersion(void);</a></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p><a href="zsocket()">int zsocket (int family, int type, int protocol);</a></p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p><a href="zconnect()">int zconnect(int sockfd, struct sockaddr *serv_addr, int addrlen);</a></p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p><a href="zbind()">int zbind(int sockfd, struct sockaddr *my_addr,int addrlen);</a></p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p><a href="zlisten()">int zlisten(int sockfd,int backlog);</a></p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p><a href="zaccept()">int zaccept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);</a></p>
+
+<p><a href="zsend()">int zsend(int sockfd, const void *msg, int len, int flags);</a></p>
+
+<p><a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len, int flags);</a></p>
+
+<p><a href="zsendto()">int zsendto(int sockfd, const void *msg, int len, int flags, const struct sockaddr *to, socklen_t tolen);</a></p>
+
+<p><a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a></p>
+
+<p><a href="zclose()">int zclose( int sockfd );</a></p>
+
+<h2>
+<a name="other-info" class="anchor" href="#other-info"><span class="octicon octicon-link"></span></a>Other info</h2>
+
+<p>This software is distributed under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2 license</a>,
+ so feel free to integrate it in your commercial products.</p>
+
+<p>Thanks to Serge Zaitsev for jsmn library (<a href="http://zserge.bitbucket.org/jsmn.html">http://zserge.bitbucket.org/jsmn.html</a>). I've included the source as is, but would be publishing enhancements in the near future.</p>
+
+<p>This repository will be ready for use by Aug 20, 2014</p>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>

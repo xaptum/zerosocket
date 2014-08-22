@@ -1,119 +1,270 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Zero Socket by xaptum</title>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>Zero Socket by xaptum</title>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
+<link rel="stylesheet" href="stylesheets/styles.css">
+<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+<script src="javascripts/scale.fix.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<!-- 	<link rel="stylesheet" href="/resources/demos/style.css"> -->
+<script>
+$(function() {
+	$( "#accordion" ).accordion();
+});
+</script>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no">
+<!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Zero Socket</h1>
-        <p class="header">Implementation of ZeroSocket, a federated security protocol</p>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1 class="header">Zero Socket</h1>
+			<p class="header">Implementation of ZeroSocket, a federated
+				security protocol</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/xaptum/zerosocket/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/xaptum/zerosocket/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/xaptum/zerosocket">View On GitHub</a></li>
-        </ul>
+			<ul>
+				<li class="download"><a class="buttons"
+					href="https://github.com/xaptum/zerosocket/zipball/master">Download
+						ZIP</a></li>
+				<li class="download"><a class="buttons"
+					href="https://github.com/xaptum/zerosocket/tarball/master">Download
+						TAR</a></li>
+				<li><a class="buttons github"
+					href="https://github.com/xaptum/zerosocket">View On GitHub</a></li>
+			</ul>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/xaptum">
-        	<img alt="Xaptum" style="width:100%;" src="images/XaptumT_400x200.png"></a>
-        </p>
+			<p class="header">
+				This project is maintained by <a class="header name"
+					href="https://github.com/xaptum"> <img alt="Xaptum"
+					style="width: 100%;" src="images/XaptumT_400x200.png"></a>
+			</p>
 
 
-      </header>
-      <section>
-        <h1>
-<a name="zero-socket" class="anchor" href="#zero-socket"><span class="octicon octicon-link"></span></a>Zero Socket</h1>
+		</header>
+		<section>
+			<h1>
+				<a name="zero-socket" class="anchor" href="#zero-socket"><span
+					class="octicon octicon-link"></span></a>Zero Socket
+			</h1>
 
-<p>Zero Socket is a minimalistic socket interceptor.  It can be
-easily integrated into resource-limited or embedded projects.</p>
+			<p>Zero Socket is a minimalistic socket interceptor. It can be
+				easily integrated into resource-limited or embedded projects.</p>
 
-<p>You can find more information about Zero Socket format at <a href="http://xaptum.com/zerosocket">xaptum.com</a></p>
+			<p>
+				Read more about Zero Socket format at <a
+					href="http://xaptum.com/zerosocket">xaptum.com/zerosocket</a>
+			</p>
 
-<p>Library sources are available at <a href="https://github.com/xaptum/zerosocket">github.com/xaptum/zerosocket</a></p>
+			<p>
+				Library sources are available at <a
+					href="https://github.com/xaptum/zerosocket">github.com/xaptum/zerosocket</a>
+			</p>
 
-<h2>
-<a name="philosophy" class="anchor" href="#philosophy"><span class="octicon octicon-link"></span></a>Philosophy</h2>
+			<h2>
+				<a name="philosophy" class="anchor" href="#philosophy"><span
+					class="octicon octicon-link"></span></a>Philosophy
+			</h2>
 
-<p>Most client side libraries are meant to add a protocol layer. However the socket
-and network layer needs to be managed independent of the </p>
+			<p>Most client side libraries are meant to add a protocol layer.
+				However the socket and network layer needs to be managed independent
+				of the application layer protocol</p>
 
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+			<h2>
+				<a name="features" class="anchor" href="#features"><span
+					class="octicon octicon-link"></span></a>Features
+			</h2>
 
-<ul>
-<li>compatible with C++99 or later</li>
-<li>standard dependencies (even libc , libc++)</li>
-<li>highly portable (tested on x86/amd64, ARM)</li>
-<li>extremely small code footprint</li>
-<li>compile time control through -D options</li>
-<li>no dynamic memory allocation</li>
-<li>library code is covered with unit-tests</li>
-</ul><h2>
-<a name="design" class="anchor" href="#design"><span class="octicon octicon-link"></span></a>Design</h2>
+			<ul>
+				<li>compatible with C++99 or later</li>
+				<li>standard dependencies (even libc , libc++)</li>
+				<li>highly portable (tested on x86/amd64, ARM)</li>
+				<li>extremely small code footprint</li>
+				<li>compile time control through -D options</li>
+				<li>no dynamic memory allocation</li>
+				<li>library code is covered with unit-tests</li>
+			</ul>
+			<h2>
+				<a name="design" class="anchor" href="#design"><span
+					class="octicon octicon-link"></span></a>Design
+			</h2>
 
-<h2>
-<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
+			<h2>
+				<a name="install" class="anchor" href="#install"><span
+					class="octicon octicon-link"></span></a>Install
+			</h2>
 
-<p>To clone the repository you should have git client installed. Just run:</p>
+			<p>To clone the repository you should have git client installed.
+				Just run:</p>
 
-<pre><code>$ git clone https://github.com/xaptum/zerosocket.git
-</code></pre>
+			<pre><code>$ git clone https://github.com/xaptum/zerosocket.git</code></pre>
 
-<h2>
-<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+			<h2>
+				<a name="api" class="anchor" href="#api"><span
+					class="octicon octicon-link"></span></a>API
+			</h2>
 
-<p><a href="Global-variables-&amp;-macros">Global variables &amp; macros</a></p>
+			<div id="manuals">
+			<h3>
+				<a href="Global-variables-&amp;-macros">Global variables &amp;
+					macros</a>
+			</h3>
+			<!-- <div class="manual" id="GlobalVarsMacros"> -->
+				<h5 id="const-char-const-zselementdesc">const char* const
+					ZSElementDesc[]</h5>
+				<p>
+					<strong>Initial value:</strong>
+					<code>{ &quot;UNKNOWN&quot;, &quot;ProtocolVersion&quot;,
+						&quot;Username&quot;, &quot;Password&quot;, &quot;Token&quot;,
+						&quot;Date&quot;, &quot;DeviceId&quot;, &quot;Method&quot;,
+						&quot;Address&quot;, &quot;Port&quot;, &quot;Origin&quot;,
+						&quot;Destination&quot; }</code>
+					<em>*</em>
+				</p>
+				<h5 id="const-char-const-zselementname">const char* const
+					ZSElementName[]</h5>
+				<p>
+					<strong>Initial value:</strong>
+					<code>{ &quot;UNKN&quot;, &quot;zver&quot;,
+						&quot;zusr&quot;, &quot;zpas&quot;, &quot;ztok&quot;,
+						&quot;zdat&quot;, &quot;zdid&quot;, &quot;zmet&quot;,
+						&quot;zadr&quot;, &quot;zprt&quot;, &quot;zorg&quot;,
+						&quot;zdst&quot; }</code>
+				</p>
+				<hr>
+				<h4 id="macros">Macros</h4>
+				<pre><code>#define SIZEOFARRAY(ARR)    sizeof(ARR)/sizeof(*ARR)
+#define ZSMAXNAMESZ         10
+#define ZSMAXVALUSZ         1536</code></pre>
+				<h4 id="enumerations">Enumerations</h4>
+				<pre><code>enum [ZSElement] {
+    [ZUNK] = 0,
+    [ZVER], // 1
+    [ZUSR], // 2
+    [ZPAS], // 3
+    [ZTOK], // 4
+    [ZDAT], // 5
+    [ZDID], // 6
+    [ZMET], // 7
+    [ZADR], // 8
+    [ZPRT], // 9
+    [ZORG], // 10
+    [ZDST]  // 11
+ }</code></pre>
+			</div>
 
-<p><a href="getZSElementIndex()">enum ZSElement getZSElementIndex(const char * name) ;</a></p>
+			<p>
+				<a href="getZSElementIndex()">enum ZSElement
+					getZSElementIndex(const char * name) ;</a>
+			</p>
+			<div class="manual" id="getZSElementIndex">
+				<h5 id="enum-zselement-getzselementindex-const-char-name">
+					enum ZSElement getZSElementIndex ( const char* <em>name</em> )
+				</h5>
+				<p>Get Zero Socket Element Index from name(String) . This
+					function does a case insensitive string compare to known zero
+					socket keys.</p>
+				<h6 id="parameters">Parameters:</h6>
+				<p>name as a string</p>
+				<h6 id="returns">Returns:</h6>
+				<p>appropriate ZSElement when key matches, on error returns ZUNK</p>
+			</div>
 
-<p><a href="getZSVersion()">const char * getZSVersion(void);</a></p>
+			<p>
+				<a href="getZSVersion()">const char * getZSVersion(void);</a>
+			</p>
+			<div class="manual" id="getZSVersion">
+				<h5 id="const-char-getzsversion-void">const char* getZSVersion
+					( void* )</h5>
+				<h6 id="returns">Returns:</h6>
+				<p>returns the current library version of protocol supported</p>
+				<hr>
+			</div>
 
-<p><a href="zsocket()">int zsocket (int family, int type, int protocol);</a></p>
+			<p>
+				<a href="zsocket()">int zsocket (int family, int type, int
+					protocol);</a>
+			</p>
 
-<p><a href="zconnect()">int zconnect(int sockfd, struct sockaddr *serv_addr, int addrlen);</a></p>
+			<p>
+				<a href="zconnect()">int zconnect(int sockfd, struct sockaddr
+					*serv_addr, int addrlen);</a>
+			</p>
 
-<p><a href="zbind()">int zbind(int sockfd, struct sockaddr *my_addr,int addrlen);</a></p>
+			<p>
+				<a href="zbind()">int zbind(int sockfd, struct sockaddr
+					*my_addr,int addrlen);</a>
+			</p>
 
-<p><a href="zlisten()">int zlisten(int sockfd,int backlog);</a></p>
+			<p>
+				<a href="zlisten()">int zlisten(int sockfd,int backlog);</a>
+			</p>
 
-<p><a href="zaccept()">int zaccept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);</a></p>
+			<p>
+				<a href="zaccept()">int zaccept (int sockfd, struct sockaddr
+					*cliaddr, socklen_t *addrlen);</a>
+			</p>
 
-<p><a href="zsend()">int zsend(int sockfd, const void *msg, int len, int flags);</a></p>
+			<p>
+				<a href="zsend()">int zsend(int sockfd, const void *msg, int
+					len, int flags);</a>
+			</p>
 
-<p><a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len, int flags);</a></p>
+			<p>
+				<a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len,
+					int flags);</a>
+			</p>
 
-<p><a href="zsendto()">int zsendto(int sockfd, const void *msg, int len, int flags, const struct sockaddr *to, socklen_t tolen);</a></p>
+			<p>
+				<a href="zsendto()">int zsendto(int sockfd, const void *msg, int
+					len, int flags, const struct sockaddr *to, socklen_t tolen);</a>
+			</p>
 
-<p><a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a></p>
+			<p>
+				<a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf,
+					size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a>
+			</p>
 
-<p><a href="zclose()">int zclose( int sockfd );</a></p>
+			<p>
+				<a href="zclose()">int zclose( int sockfd );</a>
+			</p>
 
-<h2>
-<a name="other-info" class="anchor" href="#other-info"><span class="octicon octicon-link"></span></a>Other info</h2>
+			<h2>
+				<a name="other-info" class="anchor" href="#other-info"><span
+					class="octicon octicon-link"></span></a>Other info
+			</h2>
 
-<p>This software is distributed under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2 license</a>,
- so feel free to integrate it in your commercial products.</p>
+			<p>
+				This software is distributed under <a
+					href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2 license</a>,
+				so feel free to integrate it in your commercial products.
+			</p>
 
-<p>Thanks to Serge Zaitsev for jsmn library (<a href="http://zserge.bitbucket.org/jsmn.html">http://zserge.bitbucket.org/jsmn.html</a>). I've included the source as is, but would be publishing enhancements in the near future.</p>
+			<p>
+				Thanks to Serge Zaitsev for jsmn library (<a
+					href="http://zserge.bitbucket.org/jsmn.html">http://zserge.bitbucket.org/jsmn.html</a>).
+				I've included the source as is, but would be publishing enhancements
+				in the near future.
+			</p>
 
-<p>This repository will be ready for use by Aug 20, 2014</p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
-  </body>
+			<p>This repository will be ready for use by Aug 20, 2014</p>
+		</section>
+		<footer>
+			<p>
+				<small>Hosted on <a href="http://pages.github.com">GitHub
+						Pages</a> using the Dinky theme
+				</small>
+			</p>
+		</footer>
+	</div>
+	<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+</body>
 </html>

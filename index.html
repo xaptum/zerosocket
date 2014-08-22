@@ -8,14 +8,20 @@
 <link rel="stylesheet" href="stylesheets/styles.css">
 <link rel="stylesheet" href="stylesheets/pygment_trac.css">
 <script src="javascripts/scale.fix.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+<!-- <link rel="stylesheet" href="stylesheets/jquery-ui.css"> -->
+<script src="javascripts/jquery-1.10.2.js"></script>
+<script src="javascripts/jquery-ui.js"></script>
+<!-- 	<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script> -->
 <!-- 	<link rel="stylesheet" href="/resources/demos/style.css"> -->
+
 <script>
 	$(function() {
-		$("#accordion").accordion();
+		$("#manuals").accordion({
+			heightStyle: "fill"
+		});
 	});
 </script>
 <meta name="viewport"
@@ -115,42 +121,38 @@
 			</h2>
 
 			<div id="manuals">
-				<h3>
-					<a href="Global-variables-&amp;-macros">Global variables &amp;
-						macros</a>
-				</h3>
-				<div class="manual" id="GlobalVarsMacros">
+				<h3><a href="#">Global variables</a></h3>
+				<div class="manual" id="GlobalVars">
 					<h5 id="const-char-const-zselementdesc">const char* const
 						ZSElementDesc[]</h5>
 					<p>
 						<strong>Initial value:</strong>
-						<code>{ &quot;UNKNOWN&quot;, &quot;ProtocolVersion&quot;,
-							&quot;Username&quot;, &quot;Password&quot;, &quot;Token&quot;,
-							&quot;Date&quot;, &quot;DeviceId&quot;, &quot;Method&quot;,
-							&quot;Address&quot;, &quot;Port&quot;, &quot;Origin&quot;,
-							&quot;Destination&quot; }</code>
-						<em>*</em>
+						<pre><code>{ &quot;UNKNOWN&quot;, &quot;ProtocolVersion&quot;,
+&quot;Username&quot;, &quot;Password&quot;, &quot;Token&quot;,
+&quot;Date&quot;, &quot;DeviceId&quot;, &quot;Method&quot;,
+&quot;Address&quot;, &quot;Port&quot;, &quot;Origin&quot;,
+&quot;Destination&quot; }</code></pre>
 					</p>
 					<h5 id="const-char-const-zselementname">const char* const
 						ZSElementName[]</h5>
 					<p>
 						<strong>Initial value:</strong>
-						<code>{ &quot;UNKN&quot;, &quot;zver&quot;,
-							&quot;zusr&quot;, &quot;zpas&quot;, &quot;ztok&quot;,
-							&quot;zdat&quot;, &quot;zdid&quot;, &quot;zmet&quot;,
-							&quot;zadr&quot;, &quot;zprt&quot;, &quot;zorg&quot;,
-							&quot;zdst&quot; }</code>
+						<pre><code>{ &quot;UNKN&quot;, &quot;zver&quot;,
+&quot;zusr&quot;, &quot;zpas&quot;, &quot;ztok&quot;,
+&quot;zdat&quot;, &quot;zdid&quot;, &quot;zmet&quot;,
+&quot;zadr&quot;, &quot;zprt&quot;, &quot;zorg&quot;,
+&quot;zdst&quot; }</code></pre>
 					</p>
-					<hr>
-					<h4 id="macros">Macros</h4>
-					<pre>
-						<code>#define SIZEOFARRAY(ARR)    sizeof(ARR)/sizeof(*ARR)
+				</div>
+
+
+				<h3><a href="#">Global macros</a></h3>
+				<div class="manual" id="GlobalMacros">
+					<pre><code>#define SIZEOFARRAY(ARR)    sizeof(ARR)/sizeof(*ARR)
 #define ZSMAXNAMESZ         10
-#define ZSMAXVALUSZ         1536</code>
-					</pre>
+#define ZSMAXVALUSZ         1536</code></pre>
 					<h4 id="enumerations">Enumerations</h4>
-					<pre>
-						<code>enum [ZSElement] {
+					<pre><code>enum [ZSElement] {
     [ZUNK] = 0,
     [ZVER], // 1
     [ZUSR], // 2
@@ -163,14 +165,16 @@
     [ZPRT], // 9
     [ZORG], // 10
     [ZDST]  // 11
- }</code>
-					</pre>
+ }</code></pre>
 				</div>
 
-				<p>
-					<a href="getZSElementIndex()">enum ZSElement
+
+
+
+				<h3>
+					<a href="#">enum ZSElement
 						getZSElementIndex(const char * name) ;</a>
-				</p>
+				</h3>
 				<div class="manual" id="getZSElementIndex">
 					<h5 id="enum-zselement-getzselementindex-const-char-name">
 						enum ZSElement getZSElementIndex ( const char* <em>name</em> )
@@ -185,9 +189,10 @@
 						ZUNK</p>
 				</div>
 
-				<p>
-					<a href="getZSVersion()">const char * getZSVersion(void);</a>
-				</p>
+
+				<h3>
+					<a href="#">const char * getZSVersion(void);</a>
+				</h3>
 				<div class="manual" id="getZSVersion">
 					<h5 id="const-char-getzsversion-void">const char* getZSVersion
 						( void* )</h5>
@@ -196,54 +201,141 @@
 					<hr>
 				</div>
 
-				<p>
-					<a href="zsocket()">int zsocket (int family, int type, int
-						protocol);</a>
-				</p>
 
-				<p>
-					<a href="zconnect()">int zconnect(int sockfd, struct sockaddr
+				<h3>
+					<a href="#">int zsocket (int family, int type, int protocol);</a>
+				</h3>
+				<div class="manual" id="zsocket">
+					<p>zsocket() call creates an interceptor for the socket system
+						call. Currently supported implementation is for TCP(Stream) and
+						UDP(Datagram)</p>
+					<h6 id="example-usage">Example usage:</h6>
+					<pre><code>#include &quot;zerosocket.h&quot;
+&#8942;
+int server_sock;
+&#8942;
+server_sock = zsocket (AF_INET, SOCK_STREAM, 0);</code></pre>
+					<h6 id="parameters">Parameters</h6>
+					<p>
+						<table>
+							<tr><td>Parameter</td><td>Description</td></tr>
+							<tr><td>family</td><td>The family parameter specifies a communications domain
+								within which communication will take place; this selects the
+								protocol family which should be used. These families are defined
+								in the include file &lt;sys/socket.h&gt;. The currently understood
+								formats are PF_INET Internet version 4 protocols, PF_INET6
+								Internet version 6 protocols</td></tr>
+							<tr><td>type</td><td>The socket has the
+								indicated type, which specifies the semantics of communication.
+								Currently defined types are: SOCK_STREAM SOCK_DGRAM SOCK_RAW
+								SOCK_SEQPACKET SOCK_RDM</td></tr>
+							<tr><td>protocol</td><td>The protocol specifies a
+								particular protocol to be used with the socket. Normally only a
+								single protocol exists to support a particular socket type within
+								a given protocol family. However, it is possible that many
+								protocols may exist, in which case a particular protocol must be
+								specified in this manner. The protocol number to use is particular
+								to the communication domain in which communication is to take
+								place;</td></tr>
+							<!-- <tr><td></td><td></td></tr>
+							<tr><td></td><td></td></tr> -->
+						</table>
+					</p>
+					<h6 id="returns">Returns</h6>
+					<p>returns the socket descriptor for the newly created socket</p>
+					<h6 id="see-also">See Also</h6>
+					<p>
+						<a href="http://man7.org/linux/man-pages/man5/protocols.5.html">protocols</a>
+					</p>
+					<p>
+						<a href="http://man7.org/linux/man-pages/man2/socket.2.html">socket</a>
+						for error return values
+					</p>
+					<hr>
+				</div>
+
+				<h3>
+					<a href="#">int zconnect(int sockfd, struct sockaddr
 						*serv_addr, int addrlen);</a>
-				</p>
+				</h3>
+				<div class="manual" id="zconnect">
+					<h5 id="int-zconnect-int-sockfd-struct-sockaddr-serv_addr-int-addrlen">
+						int zconnect ( int <em>sockfd</em>, struct sockaddr * <em>serv_addr</em>,
+						int <em>addrlen</em> )
+					</h5>
+					<p>zconnect() intercepts the 'connect' system call. ipv6 Connect is
+						not yet supported, to be available shortly. The zconnect() call
+						connects the socket referred to by the file descriptor sockfd to the
+						address specified by addr.</p>
+					<h6 id="example-usage">Example usage:</h6>
+					<pre><code>#include &quot;zerosocket.h&quot;
+&#8942;
+int rc;
+int client_sock;
+struct sockaddr_in server_addr;
+&#8942;
+memset(&amp;server_addr, 0,sizeof(server_addr));
+server_addr.sin_family = AF_INET;
+server_addr.sin_port = 5001;
+server_addr.sin_addr.s_addr = inet_addr(&quot;129.5.24.1&quot;);
+rc = zconnect(client_sock, (struct sockaddr *) &amp;server_addr, sizeof(server_addr));</code></pre>
+					<h6 id="parameters">Parameters</h6>
+					<p>| Parameters | Description | |------------|:------------| |
+						sockfd | The socket descriptor for the connection as returned by
+						zsocket call | serv_addr | The format of the address in addr is
+						determined by the address space of the socket sockfd | | addrlen | The
+						addrlen argument specifies the size of addr|</p>
+					<h6 id="returns">Returns</h6>
+					<p>Upon successful completion, a value of 0 is returned. Otherwise,
+						a value of -1 is returned and the global integer variable errno is set
+						to indicate the error.</p>
+					<h6 id="see-also">See Also</h6>
+					<p>[[zsocket|zsocket()]] for further details.</p>
+					<p>
+						connect <a href="http://man7.org/linux/man-pages/man2/connect.2.html">man
+							connect</a> for details on error return.
+					</p>
+					<hr>
+				</div>
 
-				<p>
-					<a href="zbind()">int zbind(int sockfd, struct sockaddr
+				<h3>
+					<a href="#">int zbind(int sockfd, struct sockaddr
 						*my_addr,int addrlen);</a>
-				</p>
+				</h3>
 
-				<p>
-					<a href="zlisten()">int zlisten(int sockfd,int backlog);</a>
-				</p>
+				<h3>
+					<a href="#">int zlisten(int sockfd,int backlog);</a>
+				</h3>
 
-				<p>
-					<a href="zaccept()">int zaccept (int sockfd, struct sockaddr
+				<h3>
+					<a href="#">int zaccept (int sockfd, struct sockaddr
 						*cliaddr, socklen_t *addrlen);</a>
-				</p>
+				</h3>
 
-				<p>
-					<a href="zsend()">int zsend(int sockfd, const void *msg, int
+				<h3>
+					<a href="#">int zsend(int sockfd, const void *msg, int
 						len, int flags);</a>
-				</p>
+				</h3>
 
-				<p>
-					<a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len,
+				<h3>
+					<a href="#">int zrecv(int sockfd, void *buf, size_t len,
 						int flags);</a>
-				</p>
+				</h3>
 
-				<p>
-					<a href="zsendto()">int zsendto(int sockfd, const void *msg,
+				<h3>
+					<a href="#">int zsendto(int sockfd, const void *msg,
 						int len, int flags, const struct sockaddr *to, socklen_t tolen);</a>
-				</p>
+				</h3>
 
-				<p>
-					<a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf,
+				<h3>
+					<a href="#">int zrecvfrom(int sockfd, void *buf,
 						size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a>
-				</p>
+				</h3>
 
-				<p>
-					<a href="zclose()">int zclose( int sockfd );</a>
-				</p>
-			</div
+				<h3>
+					<a href="#">int zclose( int sockfd );</a>
+				</h3>
+			</div>
 			<h2>
 				<a name="other-info" class="anchor" href="#other-info"><span
 					class="octicon octicon-link"></span></a>Other info

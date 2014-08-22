@@ -163,7 +163,8 @@ p img {
 code, pre {
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   color:#000;
-  font-size:14px;
+  font-size:12px;
+  line-height:110%;
 }
 
 pre {
@@ -322,6 +323,15 @@ section {
   padding-bottom:50px;
 }
 
+div.manual {
+	display:none;	
+}
+
+/* Manual - individual manual */
+
+manual p {
+	font-size: 12 px;
+}
 
 /* Footer */
 

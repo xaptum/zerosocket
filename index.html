@@ -8,14 +8,15 @@
 <link rel="stylesheet" href="stylesheets/styles.css">
 <link rel="stylesheet" href="stylesheets/pygment_trac.css">
 <script src="javascripts/scale.fix.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 <!-- 	<link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script>
-$(function() {
-	$( "#accordion" ).accordion();
-});
+	$(function() {
+		$("#accordion").accordion();
+	});
 </script>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no">
@@ -104,7 +105,9 @@ $(function() {
 			<p>To clone the repository you should have git client installed.
 				Just run:</p>
 
-			<pre><code>$ git clone https://github.com/xaptum/zerosocket.git</code></pre>
+			<pre>
+				<code>$ git clone https://github.com/xaptum/zerosocket.git</code>
+			</pre>
 
 			<h2>
 				<a name="api" class="anchor" href="#api"><span
@@ -112,39 +115,42 @@ $(function() {
 			</h2>
 
 			<div id="manuals">
-			<h3>
-				<a href="Global-variables-&amp;-macros">Global variables &amp;
-					macros</a>
-			</h3>
-			<!-- <div class="manual" id="GlobalVarsMacros"> -->
-				<h5 id="const-char-const-zselementdesc">const char* const
-					ZSElementDesc[]</h5>
-				<p>
-					<strong>Initial value:</strong>
-					<code>{ &quot;UNKNOWN&quot;, &quot;ProtocolVersion&quot;,
-						&quot;Username&quot;, &quot;Password&quot;, &quot;Token&quot;,
-						&quot;Date&quot;, &quot;DeviceId&quot;, &quot;Method&quot;,
-						&quot;Address&quot;, &quot;Port&quot;, &quot;Origin&quot;,
-						&quot;Destination&quot; }</code>
-					<em>*</em>
-				</p>
-				<h5 id="const-char-const-zselementname">const char* const
-					ZSElementName[]</h5>
-				<p>
-					<strong>Initial value:</strong>
-					<code>{ &quot;UNKN&quot;, &quot;zver&quot;,
-						&quot;zusr&quot;, &quot;zpas&quot;, &quot;ztok&quot;,
-						&quot;zdat&quot;, &quot;zdid&quot;, &quot;zmet&quot;,
-						&quot;zadr&quot;, &quot;zprt&quot;, &quot;zorg&quot;,
-						&quot;zdst&quot; }</code>
-				</p>
-				<hr>
-				<h4 id="macros">Macros</h4>
-				<pre><code>#define SIZEOFARRAY(ARR)    sizeof(ARR)/sizeof(*ARR)
+				<h3>
+					<a href="Global-variables-&amp;-macros">Global variables &amp;
+						macros</a>
+				</h3>
+				<div class="manual" id="GlobalVarsMacros">
+					<h5 id="const-char-const-zselementdesc">const char* const
+						ZSElementDesc[]</h5>
+					<p>
+						<strong>Initial value:</strong>
+						<code>{ &quot;UNKNOWN&quot;, &quot;ProtocolVersion&quot;,
+							&quot;Username&quot;, &quot;Password&quot;, &quot;Token&quot;,
+							&quot;Date&quot;, &quot;DeviceId&quot;, &quot;Method&quot;,
+							&quot;Address&quot;, &quot;Port&quot;, &quot;Origin&quot;,
+							&quot;Destination&quot; }</code>
+						<em>*</em>
+					</p>
+					<h5 id="const-char-const-zselementname">const char* const
+						ZSElementName[]</h5>
+					<p>
+						<strong>Initial value:</strong>
+						<code>{ &quot;UNKN&quot;, &quot;zver&quot;,
+							&quot;zusr&quot;, &quot;zpas&quot;, &quot;ztok&quot;,
+							&quot;zdat&quot;, &quot;zdid&quot;, &quot;zmet&quot;,
+							&quot;zadr&quot;, &quot;zprt&quot;, &quot;zorg&quot;,
+							&quot;zdst&quot; }</code>
+					</p>
+					<hr>
+					<h4 id="macros">Macros</h4>
+					<pre>
+						<code>#define SIZEOFARRAY(ARR)    sizeof(ARR)/sizeof(*ARR)
 #define ZSMAXNAMESZ         10
-#define ZSMAXVALUSZ         1536</code></pre>
-				<h4 id="enumerations">Enumerations</h4>
-				<pre><code>enum [ZSElement] {
+#define ZSMAXVALUSZ         1536</code>
+					</pre>
+					<h4 id="enumerations">Enumerations</h4>
+					<pre>
+						<code>enum [ZSElement] {
     [ZUNK] = 0,
     [ZVER], // 1
     [ZUSR], // 2
@@ -157,85 +163,87 @@ $(function() {
     [ZPRT], // 9
     [ZORG], // 10
     [ZDST]  // 11
- }</code></pre>
-			</div>
+ }</code>
+					</pre>
+				</div>
 
-			<p>
-				<a href="getZSElementIndex()">enum ZSElement
-					getZSElementIndex(const char * name) ;</a>
-			</p>
-			<div class="manual" id="getZSElementIndex">
-				<h5 id="enum-zselement-getzselementindex-const-char-name">
-					enum ZSElement getZSElementIndex ( const char* <em>name</em> )
-				</h5>
-				<p>Get Zero Socket Element Index from name(String) . This
-					function does a case insensitive string compare to known zero
-					socket keys.</p>
-				<h6 id="parameters">Parameters:</h6>
-				<p>name as a string</p>
-				<h6 id="returns">Returns:</h6>
-				<p>appropriate ZSElement when key matches, on error returns ZUNK</p>
-			</div>
+				<p>
+					<a href="getZSElementIndex()">enum ZSElement
+						getZSElementIndex(const char * name) ;</a>
+				</p>
+				<div class="manual" id="getZSElementIndex">
+					<h5 id="enum-zselement-getzselementindex-const-char-name">
+						enum ZSElement getZSElementIndex ( const char* <em>name</em> )
+					</h5>
+					<p>Get Zero Socket Element Index from name(String) . This
+						function does a case insensitive string compare to known zero
+						socket keys.</p>
+					<h6 id="parameters">Parameters:</h6>
+					<p>name as a string</p>
+					<h6 id="returns">Returns:</h6>
+					<p>appropriate ZSElement when key matches, on error returns
+						ZUNK</p>
+				</div>
 
-			<p>
-				<a href="getZSVersion()">const char * getZSVersion(void);</a>
-			</p>
-			<div class="manual" id="getZSVersion">
-				<h5 id="const-char-getzsversion-void">const char* getZSVersion
-					( void* )</h5>
-				<h6 id="returns">Returns:</h6>
-				<p>returns the current library version of protocol supported</p>
-				<hr>
-			</div>
+				<p>
+					<a href="getZSVersion()">const char * getZSVersion(void);</a>
+				</p>
+				<div class="manual" id="getZSVersion">
+					<h5 id="const-char-getzsversion-void">const char* getZSVersion
+						( void* )</h5>
+					<h6 id="returns">Returns:</h6>
+					<p>returns the current library version of protocol supported</p>
+					<hr>
+				</div>
 
-			<p>
-				<a href="zsocket()">int zsocket (int family, int type, int
-					protocol);</a>
-			</p>
+				<p>
+					<a href="zsocket()">int zsocket (int family, int type, int
+						protocol);</a>
+				</p>
 
-			<p>
-				<a href="zconnect()">int zconnect(int sockfd, struct sockaddr
-					*serv_addr, int addrlen);</a>
-			</p>
+				<p>
+					<a href="zconnect()">int zconnect(int sockfd, struct sockaddr
+						*serv_addr, int addrlen);</a>
+				</p>
 
-			<p>
-				<a href="zbind()">int zbind(int sockfd, struct sockaddr
-					*my_addr,int addrlen);</a>
-			</p>
+				<p>
+					<a href="zbind()">int zbind(int sockfd, struct sockaddr
+						*my_addr,int addrlen);</a>
+				</p>
 
-			<p>
-				<a href="zlisten()">int zlisten(int sockfd,int backlog);</a>
-			</p>
+				<p>
+					<a href="zlisten()">int zlisten(int sockfd,int backlog);</a>
+				</p>
 
-			<p>
-				<a href="zaccept()">int zaccept (int sockfd, struct sockaddr
-					*cliaddr, socklen_t *addrlen);</a>
-			</p>
+				<p>
+					<a href="zaccept()">int zaccept (int sockfd, struct sockaddr
+						*cliaddr, socklen_t *addrlen);</a>
+				</p>
 
-			<p>
-				<a href="zsend()">int zsend(int sockfd, const void *msg, int
-					len, int flags);</a>
-			</p>
+				<p>
+					<a href="zsend()">int zsend(int sockfd, const void *msg, int
+						len, int flags);</a>
+				</p>
 
-			<p>
-				<a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len,
-					int flags);</a>
-			</p>
+				<p>
+					<a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len,
+						int flags);</a>
+				</p>
 
-			<p>
-				<a href="zsendto()">int zsendto(int sockfd, const void *msg, int
-					len, int flags, const struct sockaddr *to, socklen_t tolen);</a>
-			</p>
+				<p>
+					<a href="zsendto()">int zsendto(int sockfd, const void *msg,
+						int len, int flags, const struct sockaddr *to, socklen_t tolen);</a>
+				</p>
 
-			<p>
-				<a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf,
-					size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a>
-			</p>
+				<p>
+					<a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf,
+						size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a>
+				</p>
 
-			<p>
-				<a href="zclose()">int zclose( int sockfd );</a>
-			</p>
-
+				<p>
+					<a href="zclose()">int zclose( int sockfd );</a>
+				</p>
+			</div
 			<h2>
 				<a name="other-info" class="anchor" href="#other-info"><span
 					class="octicon octicon-link"></span></a>Other info

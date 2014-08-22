@@ -1,0 +1,41 @@
+<div class="manual" id="zconnect">
+	<h5 id="int-zconnect-int-sockfd-struct-sockaddr-serv_addr-int-addrlen">
+		int zconnect ( int <em>sockfd</em>, struct sockaddr * <em>serv_addr</em>,
+		int <em>addrlen</em> )
+	</h5>
+	<p>zconnect() intercepts the 'connect' system call. ipv6 Connect is
+		not yet supported, to be available shortly. The zconnect() call
+		connects the socket referred to by the file descriptor sockfd to the
+		address specified by addr.</p>
+	<h6 id="example-usage">Example usage:</h6>
+	<pre>
+		<code>#include &quot;zerosocket.h&quot;
+⋮
+int rc;
+int client_sock;
+struct sockaddr_in server_addr;
+⋮
+memset(&amp;server_addr, 0,sizeof(server_addr));
+server_addr.sin_family = AF_INET;
+server_addr.sin_port = 5001;
+server_addr.sin_addr.s_addr = inet_addr(&quot;129.5.24.1&quot;);
+rc = zconnect(client_sock, (struct sockaddr *) &amp;server_addr, sizeof(server_addr));</code>
+	</pre>
+	<h6 id="parameters">Parameters</h6>
+	<p>| Parameters | Description | |------------|:------------| |
+		sockfd | The socket descriptor for the connection as returned by
+		zsocket call | serv_addr | The format of the address in addr is
+		determined by the address space of the socket sockfd | | addrlen | The
+		addrlen argument specifies the size of addr|</p>
+	<h6 id="returns">Returns</h6>
+	<p>Upon successful completion, a value of 0 is returned. Otherwise,
+		a value of -1 is returned and the global integer variable errno is set
+		to indicate the error.</p>
+	<h6 id="see-also">See Also</h6>
+	<p>[[zsocket|zsocket()]] for further details.</p>
+	<p>
+		connect <a href="http://man7.org/linux/man-pages/man2/connect.2.html">man
+			connect</a> for details on error return.
+	</p>
+	<hr>
+</div>

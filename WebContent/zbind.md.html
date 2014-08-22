@@ -1,0 +1,61 @@
+<div class="manual" id="zbind">
+	<h5 id="int-zbind-intsockfd-struct-sockaddr-my_addr-int-addrlen">
+		int zbind ( int <em>sockfd</em>, struct sockaddr * <em>my_addr</em>,
+		int <em>addrlen</em> )
+	</h5>
+	<p>zbind() call intercepts the bind system call.</p>
+	<p>zbind() assigns the address specified by addr to the socket
+		referred to by the file descriptor sockfd. addrlen specifies the size,
+		in bytes, of the address structure pointed to by addr.</p>
+	<h6 id="example-usage">Example usage:</h6>
+	<pre>
+		<code>#include &quot;zerosocket.h&quot;
+&#8942;
+int rc;
+int s;
+struct sockaddr_in myname;
+&#8942;
+// bind to all interfaces
+memset(&amp;myname, 0, sizeof(myname));
+myname.sin_family = AF_INET;
+myname.sin_port = 5001;
+myname.sin_addr.s_addr = INADDR_ANY; // all interfaces
+rc = zbind (s, (struct sockaddr *) &amp;myname, sizeof(myname));</code>
+	</pre>
+	<h6 id="parameters">Parameters</h6>
+	<p>
+	<table>
+		<tr>
+			<td>Parameter</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sockfd</td>
+			<td>unassigned socket file descriptor as assigned by zsocket
+				call, do not use return value from socket call to this function</td>
+		</tr>
+		<tr>
+			<td>my_addr</td>
+			<td>The actual structure passed for the my_addr argument will
+				depend on the address family. The sockaddr structure is defined as
+				something like <br>
+			<code>struct sockaddr { sa_family_t sa_family; char
+					sa_data[14]; }</code>
+			</td>
+		</tr>
+		<tr>
+			<td>addrlen</td>
+			<td>length of the my_addr, depends on the address family</td>
+		</tr>
+	</table>
+	</p>
+	<h6 id="returns">Returns</h6>
+	<p>On success, zero is returned. On error, -1 is returned, and
+		errno is set appropriately.</p>
+	<h6 id="see-also">See Also</h6>
+	<p>
+		bind <a href="http://man7.org/linux/man-pages/man2/bind.2.html">man
+			bind</a>.
+	</p>
+	<hr>
+</div>

@@ -1,0 +1,44 @@
+<div class="manual" id="zsocket">
+	<h5 id="int-zsocket-int-family-int-type-int-protocol">
+		int zsocket ( int  <em>family</em>, int  <em>type</em>, int  <em>protocol</em>
+		)
+	</h5>
+	<p>zsocket() call creates an interceptor for the socket system
+		call. Currently supported implementation is for TCP(Stream) and
+		UDP(Datagram)</p>
+	<h6 id="example-usage">Example usage:</h6>
+	<pre>
+		<code>#include &quot;zerosocket.h&quot;
+⋮
+int server_sock;
+⋮
+server_sock = zsocket (AF_INET, SOCK_STREAM, 0);</code>
+	</pre>
+	<h6 id="parameters">Parameters</h6>
+	<p>| Parameter | Description | |-----------|-------------| | family
+		| The family parameter specifies a communications domain within which
+		communication will take place; this selects the protocol family which
+		should be used. These families are defined in the include file
+		&lt;sys/socket.h&gt;. The currently understood formats are PF_INET
+		Internet version 4 protocols, PF_INET6 Internet version 6 protocols| |
+		type | The socket has the indicated type, which specifies the
+		semantics of communication. Currently defined types are: SOCK_STREAM
+		SOCK_DGRAM SOCK_RAW SOCK_SEQPACKET SOCK_RDM| | protocol | The protocol
+		specifies a particular protocol to be used with the socket. Normally
+		only a single protocol exists to support a particular socket type
+		within a given protocol family. However, it is possible that many
+		protocols may exist, in which case a particular protocol must be
+		specified in this manner. The protocol number to use is particular to
+		the communication domain in which communication is to take place;|</p>
+	<h6 id="returns">Returns</h6>
+	<p>returns the socket descriptor for the newly created socket</p>
+	<h6 id="see-also">See Also</h6>
+	<p>
+		<a href="http://man7.org/linux/man-pages/man5/protocols.5.html">protocols</a>
+	</p>
+	<p>
+		<a href="http://man7.org/linux/man-pages/man2/socket.2.html">socket</a>
+		for error return values
+	</p>
+	<hr>
+</div>

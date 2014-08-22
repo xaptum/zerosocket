@@ -1,0 +1,49 @@
+<div class="manual" id="getZSElementIndex">
+	<h5 id="int-zlisten-int-sockfd-int-backlog">
+		int zlisten ( int <em>sockfd</em>, int <em>backlog</em> )
+	</h5>
+	<p>zlisten() call intercepts the listen system call.</p>
+	<p>zlisten() marks the socket referred to by sockfd as a passive
+		socket, that is, as a socket that will be used to accept incoming
+		connection requests using zaccept.</p>
+	<pre><code>#include &quot;zerosocket.h&quot;
+&#8942;
+int rc;
+int server_sock;
+&#8942;
+rc = zlisten(server_sock,5);</code></pre>
+	<h6 id="parameters">Parameters</h6>
+	<table>
+		<tr>
+			<td>parameter</td>
+			<td>Description</td>
+		</tr>
+		<tr>
+			<td>sockfd</td>
+			<td>The sockfd argument is a file descriptor that refers to a
+				socket of type SOCK_STREAM or SOCK_SEQPACKET.</td>
+		</tr>
+		<tr>
+			<td>backlog</td>
+			<td>The backlog argument defines the maximum length to which the
+				queue of pending connections for sockfd may grow.</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<h6 id="returns">Returns</h6>
+	<p>On success, zero is returned. On error, -1 is returned, and
+		errno is set appropriately.</p>
+	<h6 id="see-also">See Also</h6>
+	<p>[[zaccept|zaccept()]]</p>
+	<p>
+		zlisten <a href="http://man7.org/linux/man-pages/man2/listen.2.html">man
+			listen</a>
+	</p>
+</div>

@@ -1,0 +1,32 @@
+<div class="manual" id="zaccept">
+<h5 id="int-zaccept-intsockfd-struct-sockaddr-cliaddr-socklen_t-addrlen">int zaccept ( int <em>sockfd</em>, struct sockaddr * <em>cliaddr</em>, socklen_t * <em>addrlen</em> )</h5>
+<p>zaccept() call intercepts the accept system call.</p>
+<p>zaccept() used with connection-based socket types (SOCK_STREAM, SOCK_SEQPACKET), It extracts the first connection request on the queue of pending connections for the listening socket, sockfd, creates a new connected socket, and returns a new file descriptor referring to that socket.</p>
+<h6 id="example-usage">Example usage:</h6>
+<pre><code>#include &quot;zerosocket.h&quot;
+&#8942;
+int newclient_sock;
+int server_sock;
+struct sockaddr client_addr;
+int addrlen;
+//zsocket, zbind, and zlisten have been called
+&#8942;
+addrlen = sizeof(client_addr);
+newclient_sock = zaccept((server_sock,&amp;client_addr, &amp;addrlen));
+</code></pre>
+<h6 id="parameters">Parameters:</h6>
+<table>
+	<tr><td>Parameter</td><td>Description</td></tr>
+	<tr><td>sockd</td><td>sockfd is a socket that has been created with zsocket, bound to a local address with zbind, and is listening for connections after a zlisten</td></tr>
+	<tr><td>cliaddr</td><td>cliaddr is a pointer to a sockaddr structure. This structure is filled in with the address of the peer socket, as known to the communications layer</td></tr>
+	<tr><td>addrlen</td><td>addrlen argument is a value-result argument: the caller must initialize it to contain the size (in bytes) of the structure pointed to by addr; on return it will contain the actual size of the peer address</td></tr>
+</table>
+<h6 id="returns">Returns</h6>
+<p>On success, these system calls return a nonnegative integer that is a descriptor for the accepted socket. On error, -1 is returned, and errno is set appropriately.</p>
+<h6 id="see-also">See Also</h6>
+<p>[[zsocket|zsocket()]]</p>
+<p>[[zbind|zbind()]]</p>
+<p>[[zlisten|zlisten()]]</p>
+<p>accept <a href="http://man7.org/linux/man-pages/man2/accept.2.html">man accept</a></p>
+<hr>
+</div>

@@ -1,0 +1,54 @@
+<div class="manual" id="getZSElementIndex">
+<h5 id="int-zrecv-int-sockfd-void-buf-size_tlen-int-flags">int zrecv ( int <em>sockfd</em>, void * <em>buf</em>, size_t <em>len</em>, int <em>flags</em> )</h5>
+<p>zrecv() call intercepts the recv system call.</p>
+<p>zrecv() call may be used only when the socket is in a connected state (so that the intended recipient is known). the following call</p>
+<pre><code>zrecv (sockfd, buf, len, flags);</code></pre>
+<p>is equivalent to</p>
+<pre><code>zrecvfrom (sockfd,buf, len, flags, NULL, 0);</code></pre>
+<h6 id="example-usage">Example usage:</h6>
+<pre><code>#include &quot;zerosocket.h&quot;
+⋮
+int rc;
+int server_sock;
+char oob_data;
+⋮
+rc = zrecv (server_sock,oob_data,sizeof(oob_data),MSG_OOB);
+if (rc &gt; 0)
+{
+// Process the oob data from the sender
+⋮
+}</code></pre>
+<h6 id="parameters">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sockfd</td>
+<td style="text-align:left">The sockfd argument is a file descriptor that refers to a socket of type SOCK_STREAM or SOCK_SEQPACKET.</td>
+</tr>
+<tr>
+<td>buf</td>
+<td style="text-align:left">the message is found in buf</td>
+</tr>
+<tr>
+<td>len</td>
+<td style="text-align:left">length of data to send in buf</td>
+</tr>
+<tr>
+<td>flags</td>
+<td style="text-align:left">see send manual or follow link below to see possible flags</td>
+</tr>
+</tbody>
+</table>
+<h6 id="returns">Returns</h6>
+<p>On success, zero is returned. On error, -1 is returned, and errno is set appropriately.</p>
+<h6 id="see-also">See Also</h6>
+<p>[[zrecvfrom|zrecvfrom()]]</p>
+<p>recv <a href="http://man7.org/linux/man-pages/man2/recv.2.html">man recv</a></p>
+<hr>
+</div>

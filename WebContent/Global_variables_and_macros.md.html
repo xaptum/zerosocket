@@ -1,0 +1,27 @@
+<div class="manual" id="GlobalVarsMacros">
+<h3 id="global-variables">Global Variables</h3>
+<h5 id="const-char-const-zselementdesc">const char* const ZSElementDesc[]</h5>
+<p><strong>Initial value:</strong> <code>{     &quot;UNKNOWN&quot;,     &quot;ProtocolVersion&quot;,     &quot;Username&quot;,     &quot;Password&quot;,     &quot;Token&quot;,     &quot;Date&quot;,     &quot;DeviceId&quot;,     &quot;Method&quot;,     &quot;Address&quot;,     &quot;Port&quot;,     &quot;Origin&quot;,     &quot;Destination&quot; }</code> <em>*</em></p>
+<h5 id="const-char-const-zselementname">const char* const ZSElementName[]</h5>
+<p><strong>Initial value:</strong> <code>{     &quot;UNKN&quot;,     &quot;zver&quot;,     &quot;zusr&quot;,     &quot;zpas&quot;,     &quot;ztok&quot;,     &quot;zdat&quot;,     &quot;zdid&quot;,     &quot;zmet&quot;,     &quot;zadr&quot;,     &quot;zprt&quot;,     &quot;zorg&quot;,     &quot;zdst&quot; }</code></p>
+<hr>
+<h3 id="macros">Macros</h3>
+<pre><code>#define SIZEOFARRAY(ARR)   sizeof(ARR)/sizeof(*ARR)
+#define ZSMAXNAMESZ   10
+#define ZSMAXVALUSZ   1536</code></pre>
+<h3 id="enumerations">Enumerations</h3>
+<pre><code>enum [ZSElement] {
+    [ZUNK] = 0,
+    [ZVER], // 1
+    [ZUSR], // 2
+    [ZPAS], // 3
+    [ZTOK], // 4
+    [ZDAT], // 5
+    [ZDID], // 6
+    [ZMET], // 7
+    [ZADR], // 8
+    [ZPRT], // 9
+    [ZORG], // 10
+    [ZDST]  // 11
+ }</code></pre>
+</div>

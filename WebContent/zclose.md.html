@@ -1,0 +1,21 @@
+<div class="manual" id="zclose">
+<h5 id="int-zclose-int-sockfd">int zclose ( int <em>sockfd</em> )</h5>
+<p>zclose() call intercepts the close system call.</p>
+<p>The zclose() function shuts down a socket and frees resources allocated to that socket, including those allocated by zerosocket library. do not call close as this results in a memory leak.</p>
+<h6 id="example-usage">Example usage:</h6>
+<pre><code>#include &quot;zerosocket.h&quot;
+&#8942;
+int rc;
+int server_sock;
+&#8942;
+rc = zclose(server_sock);
+exit(0);</code></pre>
+<h6 id="parameters">Parameters</h6>
+<p>sockfd file descriptor used generated from zsocket call</p>
+<h6 id="returns">Returns</h6>
+<p>zclose() returns zero on success. On error, -1 is returned, and errno is set appropriately.</p>
+<h6 id="see-also">See Also</h6>
+<p>[[zsocket|zsocket()]]</p>
+<p>close <a href="http://man7.org/linux/man-pages/man2/close.2.html">man close</a></p>
+<hr>
+</div>

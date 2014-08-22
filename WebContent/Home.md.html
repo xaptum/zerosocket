@@ -1,0 +1,38 @@
+<h1 id="zero-socket">Zero Socket</h1>
+<p>Zero Socket is a minimalistic socket interceptor. It can be easily integrated into resource-limited or embedded projects.</p>
+<p>You can find more information about Zero Socket format at <a href="http://xaptum.com/zerosocket">xaptum.com</a></p>
+<p>Library sources are available at <a href="https://github.com/bladeninja/zerosocket">github.com/bladeninja/zerosocket</a></p>
+<h2 id="philosophy">Philosophy</h2>
+<p>Most client side libraries are meant to add a protocol layer. However the socket and network layer needs to be managed independent of the</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>compatible with C++99 or later</li>
+<li>standard dependencies (even libc , libc++)</li>
+<li>highly portable (tested on x86/amd64, ARM)</li>
+<li>extremely small code footprint</li>
+<li>compile time control through -D options</li>
+<li>no dynamic memory allocation</li>
+<li>library code is covered with unit-tests</li>
+</ul>
+<h2 id="design">Design</h2>
+<h2 id="install">Install</h2>
+<p>To clone the repository you should have git client installed. Just run:</p>
+<pre><code>$ git clone https://github.com/bladeninja/zerosocket.git</code></pre>
+<h2 id="api">API</h2>
+<p><a href="Global-variables-&amp;-macros">Global variables &amp; macros</a></p>
+<p><a href="getZSElementIndex()">enum ZSElement getZSElementIndex(const char * name) ;</a></p>
+<p><a href="getZSVersion()">const char * getZSVersion(void);</a></p>
+<p><a href="zsocket()">int zsocket (int family, int type, int protocol);</a></p>
+<p><a href="zconnect()">int zconnect(int sockfd, struct sockaddr *serv_addr, int addrlen);</a></p>
+<p><a href="zbind()">int zbind(int sockfd, struct sockaddr *my_addr,int addrlen);</a></p>
+<p><a href="zlisten()">int zlisten(int sockfd,int backlog);</a></p>
+<p><a href="zaccept()">int zaccept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);</a></p>
+<p><a href="zsend()">int zsend(int sockfd, const void *msg, int len, int flags);</a></p>
+<p><a href="zrecv()">int zrecv(int sockfd, void *buf, size_t len, int flags);</a></p>
+<p><a href="zsendto()">int zsendto(int sockfd, const void *msg, int len, int flags, const struct sockaddr *to, socklen_t tolen);</a></p>
+<p><a href="zrecvfrom()">int zrecvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);</a></p>
+<p><a href="zclose()">int zclose( int sockfd );</a></p>
+<h2 id="other-info">Other info</h2>
+<p>This software is distributed under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2 license</a>, so feel free to integrate it in your commercial products.</p>
+<p>Thanks to Serge Zaitsev for jsmn library (http://zserge.bitbucket.org/jsmn.html). I've included the source as is, but would be publishing enhancements in the near future.</p>
+<p>This repository will be ready for use by Aug 20, 2014</p>

@@ -1,0 +1,59 @@
+<div class="manual" id="zsendto">
+<h5 id="int-zsendto-int-sockfd-const-void-msg-int-len-int-flags-const-struct-sockaddr-to-socklen_t-tolen">int zsendto ( int  <em>sockfd</em>, const void *  <em>msg</em>, int  <em>len</em>, int  <em>flags</em>, const struct sockaddr *  <em>to</em>, socklen_t  <em>tolen</em> )</h5>
+<p>zsendto() call intercepts the sendto system call.</p>
+<p>zsendto() call may be used only when the socket is set for Datagram. If zsendto() is used on a connection-mode (SOCK_STREAM, SOCK_SEQPACKET) socket, the arguments dest_addr and addrlen are ignored.</p>
+<p>The following call: <code>zsend(sockfd, buf, len, flags);</code> is equivalent to <code>zsendto(sockfd, buf, len, flags, NULL, 0);</code></p>
+<h6 id="example-usage">Example usage:</h6>
+<pre><code>int bytes_sent;
+int server_sock;
+char send_msg[100];
+struct sockaddr_in to_addr;
+⋮
+to_addr.sin_family = AF_INET;
+to_addr.sin_port = 5001;
+to_addr.sin_addr.s_addr = inet_addr(&quot;129.5.24.1&quot;);
+bytes_sent =
+zsendto (server_sock, send_msg, sizeof(send_msg), 0, (struct sockaddr *)&amp;to_addr, sizeof(to_addr));</code></pre>
+<h6 id="parameters">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sockfd</td>
+<td>The sockfd argument is a file descriptor that refers to a socket</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>the message is found in buf</td>
+</tr>
+<tr>
+<td>len</td>
+<td>length of data to send in buf</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>see send manual or follow link below to see possible flags</td>
+</tr>
+<tr>
+<td>to</td>
+<td>the address of the target is given by to</td>
+</tr>
+<tr>
+<td>tolen</td>
+<td>specifying the size of to structure</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="returns">Returns</h6>
+<p>On success, zero is returned. On error, -1 is returned, and errno is set appropriately.</p>
+<h6 id="see-also">See Also</h6>
+<p>[[zsend|zsend()]]</p>
+<p>sendto <a href="http://man7.org/linux/man-pages/man2/sendto.2.html">man sendto</a></p>
+<hr>
+</div>

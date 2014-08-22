@@ -1,0 +1,60 @@
+<div class="manual" id="zrecvfrom">
+<h5 id="int-zrecvfrom-int-sockfd-void-buf-size_t-len-int-flags-struct-sockaddr-from-socklen_t-fromlen">int zrecvfrom ( int <em>sockfd</em>, void * <em>buf</em>, size_t <em>len</em>, int <em>flags</em>, struct sockaddr * <em>from</em>, socklen_t * <em>fromlen</em> )</h5>
+<p>zrecvfrom() call intercepts the recv system call.</p>
+<p>zrecvfrom() call may be used when the socket is in any (connected or not) state.</p>
+<p>the following call</p>
+<pre><code>zrecv (sockfd,buf, len, flags);</code></pre>
+<p>is equivalent to <code>zrecvfrom (sockfd, buf, len, flags, NULL, 0);</code></p>
+<h6 id="example-usage">Example usage:</h6>
+<pre><code>int bytes_recv;
+int server_sock;
+char data_recv[256];
+struct sockaddr client_addr;
+socklen_t addr_len;
+&#8942;
+bytes_recv =
+zrecvfrom (server_sock, data_recv, sizeof(data_recv), 0, (struct sockaddr *) &amp;client_addr, (int *) &amp;addr_len);</code></pre>
+<h6 id="parameters">Parameters</h6>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sockfd</td>
+<td style="text-align:left">The sockfd argument is a file descriptor that refers to a socket of type SOCK_DGRAM.</td>
+</tr>
+<tr>
+<td>buf</td>
+<td style="text-align:left">the message is found in buf</td>
+</tr>
+<tr>
+<td>len</td>
+<td style="text-align:left">length of data to send in buf</td>
+</tr>
+<tr>
+<td>flags</td>
+<td style="text-align:left">see send manual or follow link below to see possible flags</td>
+</tr>
+<tr>
+<td>from</td>
+<td style="text-align:left">address of sockaddr stored in this location</td>
+</tr>
+<tr>
+<td>fromlen</td>
+<td style="text-align:left">address of socklen_t, the length is stored after call</td>
+</tr>
+</tbody>
+</table>
+
+
+<h6 id="returns">Returns</h6>
+<p>These calls return the number of bytes received, or -1 if an error occurred. The return value will be 0 when the peer has performed an orderly shutdown.</p>
+<h6 id="see-also">See Also</h6>
+<p>[[zrecv|zrecv()]]</p>
+<p>recvfrom <a href="http://man7.org/linux/man-pages/man2/recvfrom.2.html">man recv</a></p>
+<hr>
+</div>

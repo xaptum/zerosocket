@@ -58,15 +58,18 @@ public:
 	virtual int bind(struct sockaddr *my_addr,socklen_t addrlen) = 0;
 	virtual int listen(int backlog) = 0;
 	virtual int accept (struct sockaddr *cliaddr, socklen_t *addrlen) = 0;
-	virtual int send(const void *msg, size_t len, flag_t flags) = 0;
-	virtual int recv(void *buf, size_t len, flag_t flags) = 0;
-	virtual int sendto(const void *msg, size_t len, flag_t flags,
+	virtual ssize_t send(const void *msg, size_t len, flag_t flags) = 0;
+	virtual ssize_t recv(void *buf, size_t len, flag_t flags) = 0;
+	virtual ssize_t sendto(const void *msg, size_t len, flag_t flags,
 			const struct sockaddr *to, socklen_t tolen) = 0;
-	virtual int recvfrom(void *buf, size_t len, flag_t flags,
+	virtual ssize_t recvfrom(void *buf, size_t len, flag_t flags,
 			struct sockaddr *from, socklen_t *fromlen) = 0;
+	virtual ssize_t sendmsg(const struct msghdr *msg, int flags) = 0;
+	virtual ssize_t recvmsg(struct msghdr *msg, int flags) = 0;
 	virtual int close() = 0;
-	const Egress& getEgress() const;
-	const Ingress& getIngress() const;
+	virtual int shutdown(int how) = 0;
+	virtual Egress& getEgress() const;
+	virtual Ingress& getIngress() const;
 };
 
 } /* namespace zerosocket */

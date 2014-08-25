@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "UDPConnection.h"
 
 namespace zerosocket {
@@ -53,26 +54,34 @@ int UDPConnection::accept(struct sockaddr* cliaddr,
 /**
  * send not implemented for UDP
  */
-int UDPConnection::send(const void* msg, size_t len, flag_t flags) {
+ssize_t UDPConnection::send(const void* msg, size_t len, flag_t flags) {
 	return -1;
 }
 
 /**
  * recv not implemented for UDP
  */
-int UDPConnection::recv(void* buf, size_t len, flag_t flags) {
+ssize_t UDPConnection::recv(void* buf, size_t len, flag_t flags) {
 	return -1;
 }
 
 /**
  * true UDP send
  */
-int UDPConnection::sendto(const void* msg, size_t len,
+ssize_t UDPConnection::sendto(const void* msg, size_t len,
 		flag_t flags, const struct sockaddr* to, socklen_t tolen) {
+	Egress egress = this->getEgress();
+	char * zsheader = egress.c_str();
+	if (NULL != zsheader)
+	{
+		int retval = ::sendto(this->getFd(),zsheader,strlen(zsheader),0, to, tolen);
+		if (retval <= 0)fprintf(stderr,"UDPConnection: Error sending header to destination\n");
+		free(zsheader);
+	}
 	return ::sendto(this->getFd(), msg, len, flags, to, tolen);
 }
 
-int UDPConnection::recvfrom(void* buf, size_t len, flag_t flags,
+ssize_t UDPConnection::recvfrom(void* buf, size_t len, flag_t flags,
 		struct sockaddr* from, socklen_t * fromlen) {
 
 	return ::recvfrom(this->getFd(), buf, len, flags, from, fromlen);
@@ -82,4 +91,17 @@ int UDPConnection::close() {
 	return ::close(this->getFd());
 }
 
+ssize_t UDPConnection::sendmsg(const struct msghdr* msg, int flags) {
+	return -1;
+}
+
+ssize_t UDPConnection::recvmsg(struct msghdr* msg, int flags) {
+	return -1;
+}
+
+int UDPConnection::shutdown(int how) {
+	return ::shutdown(this->getFd(),how);
+}
+
 } /* namespace zerosocket */
+

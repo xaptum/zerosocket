@@ -294,6 +294,8 @@ void jsmn_initc(jsmn_composer * composer)
 	memset(composer->closeout,0,sizeof(composer->closeout));
 }
 
+
+
 /**
  * internal functions
  */
@@ -303,6 +305,17 @@ size_t _jsmn_compose_arr(jsmn_composer * composer, const char * token, jsmnval_t
 size_t _jsmn_compose_obj(jsmn_composer * composer, const char * token, jsmnval_t value);
 size_t _jsmn_compose_str(jsmn_composer * composer, const char * token, jsmnval_t value);
 
+/*!
+ * external function to add content to the composer, use with care, preferably after jsmn_close()
+ * @param composer the pointer to jsmn_composer object,
+ * @param ibuff buffer containing extra content
+ * @param ilen  size of content in ibuff
+ * @return size of content copied
+ */
+inline size_t jsmn_safe_copy  (jsmn_composer * composer,const char * ibuff, size_t ilen)
+{
+	return _jsmn_safe_copy  (composer,ibuff,ilen);
+}
 /**
  *
  */

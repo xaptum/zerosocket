@@ -13,6 +13,8 @@
 
 namespace zerosocket {
 
+size_t Ingress::maxheader_sz = 10240;
+
 Ingress::Ingress(Config * config)
 	:_config(config)
 {
@@ -32,26 +34,50 @@ Ingress::~Ingress() {
  *@return pointer to the location of payload without zerosocket header,
  *			use this pointer to find the payload length (return - data)
  */
-unsigned char *
+Ingress::StateHeader_t
 Ingress::getPayload(const unsigned char* data, size_t len) {
 	ElementValueList elemValList [SIZEOFARRAY(ZSElementName)];
 	int updated = 0;
 	memset(elemValList,0,sizeof(elemValList));
+
+	if (!data) return StateHeader_t(NotReadable,NULL);
+
 	// extract header part
+<<<<<<< HEAD
+	if ( ! startsWith((const char *)data,'{',len))
+		return StateHeader_t(HeaderMissing, const_cast<unsigned char *>(data));
+
+	// check for end of header
+=======
 	if ( ! startsWith((const char *)data,'{',len)) return const_cast<unsigned char *>(data);
+>>>>>>> branch 'master' of https://github.com/bladeninja/zerosocket.git
 	unsigned char * endOfHdr = (unsigned char*) strchr(reinterpret_cast<const char*>(data),';');
+<<<<<<< HEAD
+	if (NULL == endOfHdr)
+		return StateHeader_t(HeaderIncomplete, const_cast<unsigned char *>(data)); // no header found
+
+	//Check if it indeed is a header
+	if ( ! endsWith((const char *)endOfHdr,'}',endOfHdr-data) )
+		return StateHeader_t(HeaderMissing, const_cast<unsigned char *>(data));
+=======
 	if (NULL == endOfHdr) return const_cast<unsigned char *>(data); // no header found
 	if ( ! endsWith((const char *)endOfHdr,'}',endOfHdr-data) ) return const_cast<unsigned char *>(data);
+>>>>>>> branch 'master' of https://github.com/bladeninja/zerosocket.git
 	*endOfHdr = 0;
+
 	// process JSON
 	if (processJSON(elemValList,reinterpret_cast<const char*>(data)) < 0)
 	{
 		fprintf(stderr,"error processing ");
+<<<<<<< HEAD
+		return StateHeader_t(HeaderIncomplete, const_cast<unsigned char *>(data));
+=======
 		return const_cast<unsigned char *>(data);
+>>>>>>> branch 'master' of https://github.com/bladeninja/zerosocket.git
 	}
 	updated = json2Config(elemValList);
 	fprintf(stderr,"%d config elements updated\n",updated);
-	return ++endOfHdr;
+	return StateHeader_t( HeaderComplete, ++endOfHdr);
 }
 
 /*!

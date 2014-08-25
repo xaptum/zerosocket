@@ -26,13 +26,18 @@ public:
 	virtual int bind(struct sockaddr *my_addr, socklen_t addrlen);
 	virtual int listen(int backlog);
 	virtual int accept(struct sockaddr *cliaddr, socklen_t *addrlen);
-	virtual int send(const void *msg, size_t len, flag_t flags);
-	virtual int recv(void *buf, size_t len, flag_t flags) ;
-	virtual int sendto(const void *msg, size_t len, flag_t flags,
+	virtual ssize_t send(const void *msg, size_t len, flag_t flags);
+	virtual ssize_t recv(void *buf, size_t len, flag_t flags) ;
+	virtual ssize_t sendto(const void *msg, size_t len, flag_t flags,
 			const struct sockaddr *to, socklen_t tolen) ;
-	virtual int recvfrom(void *buf, size_t len, flag_t flags,
+	virtual ssize_t recvfrom(void *buf, size_t len, flag_t flags,
 			struct sockaddr *from, socklen_t *fromlen) ;
+	virtual ssize_t sendmsg(const struct msghdr *msg, int flags);
+	virtual ssize_t recvmsg(struct msghdr *msg, int flags);
 	virtual int close();
+	virtual int shutdown(int how);
+private:
+	ssize_t recvhdr (void * buf , size_t len, flag_t flags);
 };
 
 } /* namespace zerosocket */

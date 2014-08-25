@@ -120,6 +120,11 @@ int32_t jsmn_close(jsmn_composer *composer, size_t level );
  */
 char * jsmn_safe_escape(jsmn_composer *composer);
 
+/*!
+ *
+ */
+inline size_t jsmn_safe_copy  (jsmn_composer * composer,const char * ibuff, size_t ilen);
+
 #ifdef __cplusplus
 }
 #endif

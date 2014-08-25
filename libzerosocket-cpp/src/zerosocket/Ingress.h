@@ -7,6 +7,9 @@
  *     Author: pradeepbarthur Inc.
  ********************************************************************************/
 
+#ifndef NOSTL
+# include <utility>
+#endif
 #include "zerosocket.h"
 #include "Config.h"
 
@@ -31,9 +34,26 @@ class Ingress {
 	} ElementValueList;
 	Config * _config;
 public:
+	static size_t maxheader_sz;
+	enum HdrReadstate{
+		UNKNOWN			= 0,
+		HeaderMissing	= 1,
+		HeaderIncomplete= 2,
+		HeaderComplete	= 3,
+		NotReadable		= 4
+	};
+#ifdef NOSTL
+	typedef struct {
+		HdrReadstate first;
+		unsigned char * second;
+	}StateHeader_t;
+#else
+	typedef std::pair<HdrReadstate,unsigned char *> StateHeader_t;
+#endif
 	Ingress(Config * config);
 	virtual ~Ingress();
-	virtual unsigned char * getPayload(const unsigned char * data, size_t len);
+	//virtual unsigned char * getPayload(const unsigned char * data, size_t len);
+	virtual StateHeader_t getPayload(const unsigned char * data, size_t len);
 	Config* getConfig() const;
 	void setConfig(const Config* config);
 
@@ -41,8 +61,9 @@ protected:
 	int processJSON(ElementValueList elemValList [] ,const char * header);
 	int	json2Config (ElementValueList elemValList []);
 
-	bool startsWith(const char * buff, int lookup, size_t len);
-	bool endsWith(const char * buff, int lookup, size_t len);
+public:
+	static bool startsWith(const char * buff, int lookup, size_t len);
+	static bool endsWith(const char * buff, int lookup, size_t len);
 
 };
 

@@ -285,7 +285,7 @@ int zaccept (int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen)
  * @see zsendto
  * @see send [http://man7.org/linux/man-pages/man2/send.2.html].
  */
-int zsend(int sockfd, const void *msg, int len, int flags)
+ssize_t zsend(int sockfd, const void *msg, int len, int flags)
 {
 	Connection* conn = Connection::getConnection(sockfd);
 	if (! conn) return -1;
@@ -330,7 +330,7 @@ int zsend(int sockfd, const void *msg, int len, int flags)
  * @see zrecvfrom
  * @see recv [http://man7.org/linux/man-pages/man2/recv.2.html].
  */
-int zrecv(int sockfd, void *buf, size_t len, int flags)
+ssize_t zrecv(int sockfd, void *buf, size_t len, int flags)
 {
 	Connection* conn = Connection::getConnection(sockfd);
 	if (! conn) return -1;
@@ -376,7 +376,7 @@ int zrecv(int sockfd, void *buf, size_t len, int flags)
  * @see zsend
  * @see sendto [http://man7.org/linux/man-pages/man2/sendto.2.html].
  */
-int zsendto(int sockfd, const void *msg, int len, int flags,
+ssize_t zsendto(int sockfd, const void *msg, int len, int flags,
 		   const struct sockaddr *to, socklen_t tolen)
 {
 	Connection* conn = Connection::getConnection(sockfd);
@@ -421,7 +421,7 @@ int zsendto(int sockfd, const void *msg, int len, int flags,
  * @see zrecv
  * @see recvfrom [http://man7.org/linux/man-pages/man2/recvfrom.2.html].
  */
-int zrecvfrom(int sockfd, void *buf, size_t len, int flags,
+ssize_t zrecvfrom(int sockfd, void *buf, size_t len, int flags,
 		     struct sockaddr *from, socklen_t *fromlen)
 {
 	Connection* conn = Connection::getConnection(sockfd);
@@ -458,4 +458,75 @@ int zclose( int sockfd )
 	int retval = conn->close();
 	delete conn;
 	return retval;
+}
+
+/*!
+ * zshutdown() call intercepts the shutdown system call.
+ *
+ * The zshutdown() function shuts down a socket and frees resources allocated to that socket,
+ * including those allocated by zerosocket library. do not call close as this results
+ * in a memory leak.
+ *
+ * Example usage:
+ * @code
+ * #include "zerosocket.h"
+ * ⋮
+ * int rc;
+ * int server_sock;
+ * ⋮
+ * rc = zshutdown(server_sock);
+ * exit(0);
+ * @endcode
+ * @param sockfd file descriptor used generated from zsocket call
+ * @return zshutdown() returns zero on success.  On error, -1 is returned, and errno is set appropriately.
+ * @see zsocket
+ * @see shutdown [http://man7.org/linux/man-pages/man2/close.2.html].
+ */
+int zshutdown( int sockfd , int how)
+{
+	Connection* conn = Connection::getConnection(sockfd);
+	if (! conn) return -1;
+	int retval = conn->shutdown(how);
+	delete conn;
+	return retval;
+}
+
+/*!
+ *
+ */
+ssize_t zsendmsg(int sockfd,const struct msghdr *msg, int flags)
+{
+	Connection* conn = Connection::getConnection(sockfd);
+	if (! conn) return -1;
+	return conn->sendmsg(msg,flags);
+}
+
+/*!
+ *
+ */
+ssize_t zrecvmsg(int sockfd,struct msghdr *msg, int flags)
+{
+	Connection* conn = Connection::getConnection(sockfd);
+	if (! conn) return -1;
+	return conn->recvmsg(msg,flags);
+}
+
+/*!
+ *
+ */
+ssize_t zread(int sockfd, void *buf, size_t count)
+{
+	Connection* conn = Connection::getConnection(sockfd);
+	if (! conn) return -1;
+	return conn->recv(buf,count,0);
+}
+
+/*!
+ *
+ */
+ssize_t zwrite(int sockfd, const void *buf, size_t count)
+{
+	Connection* conn = Connection::getConnection(sockfd);
+	if (! conn) return -1;
+	return conn->send(buf,count,0);
 }

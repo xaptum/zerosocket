@@ -30,6 +30,7 @@ Egress::~Egress() {
 /**
  * conver the Config object into string(char*)
  */
+
 char* Egress::c_str() {
 	jsmn_composer composer;
 	jsmn_initc(&composer);
@@ -48,6 +49,7 @@ char* Egress::c_str() {
 	PUSH_BACK(composer,ZORG,_config->get(ZORG));
 	PUSH_BACK(composer,ZDST,_config->get(ZDST));
 	jsmn_close(&composer,JSMN_MAX_LEVEL);
+	jsmn_safe_copy(&composer,";",1);
 	return composer.buff;
 }
 

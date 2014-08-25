@@ -17,6 +17,8 @@
 
 namespace zerosocket {
 
+ConnectionStore Connection::store = ConnectionStore();
+Config * Connection::_config = NULL;
 
 Connection::Connection()
 	:fd(-1),egress(Connection::getConfig()), ingress(Connection::getConfig())
@@ -103,12 +105,12 @@ void Connection::print() const {
 Connection::~Connection() {
 }
 
-const Egress& Connection::getEgress() const {
-	return egress;
+Egress& Connection::getEgress() const {
+	return const_cast<Egress&>(egress);
 }
 
-const Ingress& Connection::getIngress() const {
-	return ingress;
+Ingress& Connection::getIngress() const {
+	return const_cast<Ingress&>(ingress);
 }
 
 } /* namespace zerosocket */

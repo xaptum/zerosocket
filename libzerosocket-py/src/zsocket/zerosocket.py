@@ -1,6 +1,6 @@
 '''
 @copyright: Copyright (C) 2014-2014 Zero Socket
-@license: http://www.gnu.org/licenses/gpl.html GPL version 2 or higher
+@license: http://www.gnu.org/licenses/gpl.html GPL version 2
 
 Created on Jul 27, 2014
 @author: pradeepbarthur
@@ -53,6 +53,23 @@ class zerosocket(object):
         else:
             self.__sock = socket.socket(family,type_,proto)
         return self
+    
+    def bind(self,address):
+        '''
+        @param address: a 2-tuple (ip-address,port-number) on which to bind the port and ipaddress
+        '''
+        self.__sock.bind(address)
+    
+    def accept(self):
+        '''
+        @summary: wrapper for 
+        '''
+        self.__sock.accept()
+    
+    def listen(self,backlog):
+        '''
+        '''
+        self.__sock.listen(backlog)
         
     def connect(self,address = None):
         '''
@@ -150,13 +167,17 @@ class zerosocket(object):
                     print ('zero socket header not found')
                     return fulldata
         except Exception as zse: # as zse
-            raise ZSException("in __recv_header ")
+            raise ZSException("in __recv_header ",zse)
     
     def __send_header(self,string,flags,address):
         '''
         @return: returns the remaining part, that is payload
         '''
-        zsstr = str(self.__conf) + ';' + string
+        if self.__sentHeader is None or self.__sentHeader is False:
+            zsstr = str(self.__conf) + ';' + string
+            self.__sentHeader = True
+        else:
+            zsstr = string
         ''' Append zeroSocket header '''
         if address is None:
             return self.__sock.send(zsstr,flags)
@@ -169,4 +190,3 @@ class zerosocket(object):
         jobj = json.loads(jstr)
         for key,value in jobj.iteritems():
             self.__conf.set(key, value)
-        pass

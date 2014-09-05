@@ -1,18 +1,25 @@
 '''
-Created on Jul 27, 2014
+@copyright: Copyright (C) 2014-2014 Zero Socket
+@license: http://www.gnu.org/licenses/gpl.html GPL version 2
 
+Created on Jul 27, 2014
 @author: pradeepbarthur
 '''
 import FileConfig
 import zerosocket
-from zexceptions import ZSError, ZSException
 
 
 class zsocket(object):
     '''
-    members:
-    _sock : zerosocket
-    conf : [fileconfig] type config
+    @version: 1.0
+    @contact: pradeep@xaptum.com
+    @summary: zsocket is a wrapper class for socket or ssl class object.
+                implements an interface pattern inorder to detect and extract zero socket header
+                
+     
+    private members:
+    __sock : zerosocket
+    __conf : [fileconfig] type config
     '''
 
     def __init__(self, conf = None, sock = None):
@@ -26,7 +33,7 @@ class zsocket(object):
         
         if sock is None:
             self.__zsock = zerosocket.zerosocket(self.__conf)
-            self.__zsock.socket('TCP')
+            self.__zsock.socket('TLS')
         else:
             self.__zsock = zerosocket.zerosocket(self.__conf)
             self.__zsock.setSocket(sock)
@@ -36,6 +43,21 @@ class zsocket(object):
         '''
         Destructor
         '''
+    
+    def bind(self,address):
+        '''
+        '''
+        self.__zsock.bind(address)
+    
+    def accept(self):
+        '''
+        '''
+        self.__zsock.accept()
+    
+    def listen(self,backlog):
+        '''
+        '''
+        self.__zsock.listen(backlog)
         
     def connect(self,address = None):
         '''
@@ -45,18 +67,21 @@ class zsocket(object):
     
     def recv(self,bufsize,flags = 0):
         '''
-        
+        @param bufsize: 
+        @param flags:  
         '''
         return self.__zsock.recv(bufsize,flags)
         
     def recvfrom(self, bufsize,flags = 0):
         '''
+        @param bufsize: 
+        @param flags: 
         '''
         return self.__zsock.recvfrom(bufsize,flags)
 
     def recv_into(self, buff , nbytes = None, flags = 0):
         '''
-        buff: type buffer
+        @param buff: type buffer
         '''
         return self.__zsock.recv_into(buff,nbytes,flags)
         

@@ -1,11 +1,13 @@
 '''
-Created on Aug 29, 2014
+@copyright: Copyright (C) 2014-2014 Zero Socket
+@license: http://www.gnu.org/licenses/gpl.html GPL version 2
 
+Created on Aug 29, 2014
 @author: pradeepbarthur
 '''
 import json
 import socket
-from zexceptions import ZSError, ZSException
+from zexceptions import ZSException
 
 
 class Config(object):

@@ -1,11 +1,13 @@
 '''
-Created on Aug 29, 2014
+@copyright: Copyright (C) 2014-2014 Zero Socket
+@license: http://www.gnu.org/licenses/gpl.html GPL version 2
 
+Created on Aug 29, 2014
 @author: pradeepbarthur
 '''
 import Config
-import sys
 import json
+from zexceptions import (ZSError,ZSException)
 
 class FileConfig(Config.Config):
     '''
@@ -40,10 +42,9 @@ class FileConfig(Config.Config):
                 for key,value in jobj.iteritems():
                     self.set(key, value)
         except IOError as ioe:
-            print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
+            raise ZSError( "I/O error({0}): {1}".format(ioe.errno, ioe.strerror),ioe)
         except:
-            print "Unexpected error:", sys.exc_info()[0]
-            raise
+            raise ZSException( "Unexpected error:",ioe)
     
     def set(self,key,val):
         lval = super(FileConfig, self).get(key)
@@ -59,10 +60,9 @@ class FileConfig(Config.Config):
             with open(self._filepath, 'w') as _file:
                 _file.write(str(self))
         except IOError as ioe:
-            print "I/O error({0}): {1}".format(ioe.errno, ioe.strerror)
+            raise ZSError( "I/O error({0}): {1}".format(ioe.errno, ioe.strerror),ioe)
         except:
-            print "Unexpected error:", sys.exc_info()[0]
-            raise
+            raise ZSException( "Unexpected error:",ioe)
 
     def close(self):
         if self.__dirty:

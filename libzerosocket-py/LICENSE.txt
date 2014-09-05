@@ -1,0 +1,2 @@
+Copyright (c) 2014, Zero Socket Developers.
+All artifacts contained here in are governed by http://www.gnu.org/licenses/gpl.html GPL version 2

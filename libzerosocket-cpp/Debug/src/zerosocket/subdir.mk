@@ -13,6 +13,7 @@ CPP_SRCS += \
 ../src/zerosocket/Ingress.cpp \
 ../src/zerosocket/TCPConnection.cpp \
 ../src/zerosocket/UDPConnection.cpp \
+../src/zerosocket/autoptr.cpp \
 ../src/zerosocket/zerosocket.cpp 
 
 OBJS += \
@@ -25,6 +26,7 @@ OBJS += \
 ./src/zerosocket/Ingress.o \
 ./src/zerosocket/TCPConnection.o \
 ./src/zerosocket/UDPConnection.o \
+./src/zerosocket/autoptr.o \
 ./src/zerosocket/zerosocket.o 
 
 CPP_DEPS += \
@@ -37,6 +39,7 @@ CPP_DEPS += \
 ./src/zerosocket/Ingress.d \
 ./src/zerosocket/TCPConnection.d \
 ./src/zerosocket/UDPConnection.d \
+./src/zerosocket/autoptr.d \
 ./src/zerosocket/zerosocket.d 
 
 

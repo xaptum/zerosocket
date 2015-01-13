@@ -11,15 +11,17 @@
 #include <limits.h>
 #include <RBTree.h>
 
+#ifdef INT_MAX
+# define MAX_INT INT_MAX
+#endif
+
 #ifdef INT_MIN
 # define MIN_INT INT_MIN
 #else
 # define MIN_INT (-MAX_INT - 1)
 #endif
 
-#ifdef INT_MAX
-# define MAX_INT INT_MAX
-#endif
+
 
 namespace zerosocket {
 

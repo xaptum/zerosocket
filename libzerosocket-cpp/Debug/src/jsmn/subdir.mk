@@ -6,6 +6,9 @@
 C_SRCS += \
 ../src/jsmn/jsmn.c 
 
+O_SRCS += \
+../src/jsmn/jsmn.o 
+
 OBJS += \
 ./src/jsmn/jsmn.o 
 
